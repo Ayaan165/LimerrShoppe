@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Raleway.ttf",
+      "sha1": "033e1328adda368109649349a674c71f08f3b393"
+    },
+    {
+      "path": "src/assets/fonts/numitoIt.ttf",
+      "sha1": "0b4c3a612cf31e069014ede3a502381c034fc736"
+    },
+    {
+      "path": "src/assets/fonts/nunito.ttf",
+      "sha1": "c2adb9c3bcb684afc16cab5e70e8da3d3700a91e"
+    }
+  ]
+}
