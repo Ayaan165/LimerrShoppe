@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { COLORS } from '../consts/COLOR';
 import typography from '../style/typography';
 import { title } from 'process';
@@ -23,12 +23,13 @@ interface TouchableButtonProps {
     onPress: () => void;
     title: string;
     style?: ViewStyle;
+    TextStyle?: TextStyle;
 }
 
-const TouchableButton: React.FC<TouchableButtonProps> = ({ onPress, title, style }) => {
+const TouchableButton: React.FC<TouchableButtonProps> = ({ onPress, title, style ,TextStyle}) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-            <Text style={styles.text}>{title}</Text>
+            <Text style={[styles.text,TextStyle]}>{title}</Text>
         </TouchableOpacity>
     );
 };

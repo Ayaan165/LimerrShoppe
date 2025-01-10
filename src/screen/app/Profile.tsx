@@ -168,7 +168,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
         <Categories />
         <FlashSale/>
         <TopProducts />
-        <JustForYou/>
+        <JustForYou navigation={navigation}/>
       </ScrollView>
     </SafeAreaView>
   );

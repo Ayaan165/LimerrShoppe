@@ -101,7 +101,7 @@ const Shop: React.FC<ShopScreenProps> = ({ navigation }) => {
         <NewItem />
         <FlashSale />
         <MostPopular />
-        <JustForYou />
+        <JustForYou navigation={navigation}/>
       </ScrollView>
     </SafeAreaView>
   );

@@ -113,16 +113,18 @@
 
 
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import commonStyle from '../style/commonStyle';
 import typography from '../style/typography';
 import { COLORS } from '../consts/COLOR';
-
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '@react-navigation/native';
 interface JustForYouProps {
+  navigation: NavigationProp<any>;
   title?: string;
 }
 
-const JustForYou: React.FC<JustForYouProps> = ({title = " Just For You"}) => {
+const JustForYou: React.FC<JustForYouProps> = ({title = " Just For You", navigation}) => {
   const products = [
     {
       id: 1,
@@ -179,7 +181,7 @@ const JustForYou: React.FC<JustForYouProps> = ({title = " Just For You"}) => {
       )}
       <View style={styles.productContainer}>
         {products.map((item) => (
-          <View key={item.id} style={styles.productItem}>
+          <TouchableOpacity activeOpacity={1} key={item.id} style={styles.productItem} onPress={() => {navigation.navigate('ProductPage')}}>
             <View style={styles.productImageContainer}>
               <Image source={item.image} style={styles.productImage} resizeMode="cover" />
             </View>
@@ -187,7 +189,7 @@ const JustForYou: React.FC<JustForYouProps> = ({title = " Just For You"}) => {
               <Text style={[typography.w400s12, typography.Nunito]}>{item.details}</Text>
               <Text style={[typography.boldText17, typography.Raleway]}>{item.price}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </View>
