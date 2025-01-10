@@ -22,8 +22,8 @@ const LiveScreen: React.FC = () => {
           resizeMode="cover"
           style={styles.image}
         />
-      </View>
-
+      </View>    
+        
       <View style={styles.footer}>
         <View style={styles.footerContent}>
           <View style={styles.viewersContainer}>

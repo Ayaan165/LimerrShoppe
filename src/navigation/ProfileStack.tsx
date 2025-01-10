@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProfileScreen from '../screen/app/Profile';
 import StoryScreen from '../screen/app/StoryScreen';
+import LiveScreen from '../screen/app/LiveScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -10,6 +11,8 @@ const ProfileStack = () => {
         <Stack.Navigator initialRouteName="Profile" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="StoryScreen" component={StoryScreen} />
+            <Stack.Screen name="LiveScreen" component={LiveScreen} />
+
         </Stack.Navigator>
     );
 };

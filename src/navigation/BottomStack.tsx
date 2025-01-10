@@ -60,6 +60,7 @@ const BottomStack = () => {
         name="CategoriesStack"
         component={CategoriesStack}
         options={{
+          tabBarStyle:{display:'none'},
           tabBarLabel: 'Categories',
           tabBarIcon: ({focused}) => <Categories />,
         }}

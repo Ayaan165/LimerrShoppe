@@ -1,6 +1,7 @@
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 import {Dimensions, StyleSheet} from 'react-native';
 export const windowWidth = Dimensions.get('window').width; 
-export const windowHeight = Dimensions.get('window').height; 
+export const windowHeight = Dimensions.get('window').height;
 
 // import {colors} from '@app/constants/colors';
 

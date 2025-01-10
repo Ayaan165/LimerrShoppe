@@ -151,7 +151,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             <TintedButton
               title="To Recieve"
               onPress={() => {
-                console.log('hello');
+                navigation.navigate('LiveScreen');
               }}
             />
             <TintedButton
