@@ -52,6 +52,16 @@
 		<string>Raleway.ttf</string>
 		<string>numitoIt.ttf</string>
 		<string>nunito.ttf</string>
+		<string>Raleway500.ttf</string>
+		<string>RalewaySemiBold.ttf</string>
+		<string>Raleway100.ttf</string>
+		<string>Raleway200.ttf</string>
+		<string>Raleway300.ttf</string>
+		<string>Raleway400.ttf</string>
+		<string>Raleway600.ttf</string>
+		<string>Raleway700.ttf</string>
+		<string>Raleway800.ttf</string>
+		<string>Raleway900.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -26,7 +26,6 @@ const SearchItem: React.FC<SearchItemProps> = ({item, onPress}) => {
         <Text
           style={[
             typography.w500s17,
-            typography.Raleway,
             {width: 'auto'},
           ]}>
           {item}

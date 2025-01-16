@@ -245,7 +245,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({navigation}) => {
               <Text
                 style={[
                   typography.w500s18,
-                  typography.Raleway,
+                  // typography.Raleway,
                   {width: 'auto'},
                 ]}>
                 Search history
@@ -292,7 +292,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({navigation}) => {
             <Text
               style={[
                 typography.w500s18,
-                typography.Raleway,
+                // typography.Raleway,
                 commonStyle.mb10,
               ]}>
               Recommendations

@@ -6,6 +6,46 @@
       "sha1": "033e1328adda368109649349a674c71f08f3b393"
     },
     {
+      "path": "src/assets/fonts/Raleway100.ttf",
+      "sha1": "24ab661e5c643c4c08f7c020fc198669dd746c70"
+    },
+    {
+      "path": "src/assets/fonts/Raleway200.ttf",
+      "sha1": "e04f6b8ff5c96fff97490372919e8f29a56f7e23"
+    },
+    {
+      "path": "src/assets/fonts/Raleway300.ttf",
+      "sha1": "e18f4467e6ddb09a6edd1d0c561a4fb360ff7be1"
+    },
+    {
+      "path": "src/assets/fonts/Raleway400.ttf",
+      "sha1": "2b673d65ef7a66233c1fb1fd0424ef067a787cca"
+    },
+    {
+      "path": "src/assets/fonts/Raleway500.ttf",
+      "sha1": "2e9d4e3f2a0746ec49ed2779992a7b0900fb8302"
+    },
+    {
+      "path": "src/assets/fonts/Raleway600.ttf",
+      "sha1": "3dd2bfca1944f82e928417d0399b8725b83728aa"
+    },
+    {
+      "path": "src/assets/fonts/Raleway700.ttf",
+      "sha1": "ab21b55115bd50a57f3a95ec4eda834eee675d04"
+    },
+    {
+      "path": "src/assets/fonts/Raleway800.ttf",
+      "sha1": "4205b551172092ee7b23cc884aa9cddaef97e624"
+    },
+    {
+      "path": "src/assets/fonts/Raleway900.ttf",
+      "sha1": "008ce784e9f5a60f64677b8798a9bd7ccb253ba5"
+    },
+    {
+      "path": "src/assets/fonts/RalewaySemiBold.ttf",
+      "sha1": "3dd2bfca1944f82e928417d0399b8725b83728aa"
+    },
+    {
       "path": "src/assets/fonts/numitoIt.ttf",
       "sha1": "0b4c3a612cf31e069014ede3a502381c034fc736"
     },

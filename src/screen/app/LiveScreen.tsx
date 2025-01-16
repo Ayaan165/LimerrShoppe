@@ -8,23 +8,25 @@ import {
   Dimensions,
 } from 'react-native';
 import Forward from '../../logo/Forward.svg';
-import { COLORS } from '../../consts/COLOR';
-import { TouchableButton } from '../../component/Button';
+import {COLORS} from '../../consts/COLOR';
+import {TouchableButton} from '../../component/Button';
+import {windowHeight} from '../../style/commonStyle';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+const {width, height} = Dimensions.get('window');
 
-const { width, height } = Dimensions.get('window');
-
-const LiveScreen: React.FC = () => {
+function LiveScreen() {
+  const usableheght = windowHeight - useBottomTabBarHeight();
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.imageContainer}>
+    <SafeAreaView style={[styles.container, {height: usableheght}]}>
+      <View style={[styles.imageContainer, {height: usableheght * 0.85}]}>
         <Image
           source={require('../../assets/image/LIVE.png')}
           resizeMode="cover"
-          style={styles.image}
+          style={[styles.image, {height: usableheght * 0.85}]}
         />
-      </View>    
-        
-      <View style={styles.footer}>
+      </View>
+
+      <View style={[styles.footer, {height: usableheght * 0.065}]}>
         <View style={styles.footerContent}>
           <View style={styles.viewersContainer}>
             <Image
@@ -39,43 +41,37 @@ const LiveScreen: React.FC = () => {
           </View>
           <Forward />
         </View>
-        <TouchableButton
-          title="Shop"
-          style={styles.shopButton}
-          onPress={() => {}}
-        />
+        <View>
+          <TouchableButton
+            title="Shop"
+            style={styles.shopButton}
+            onPress={() => {}}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-  },
+  container: {},
   imageContainer: {
-
-    paddingTop:10,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
   image: {
     width: width - 40,
-    height: height * 0.8,
     borderRadius: 10,
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 20,
+    marginHorizontal: 20,
+    marginTop: 10,
   },
   footerContent: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 20,
     alignItems: 'center',
     gap: 20,
   },

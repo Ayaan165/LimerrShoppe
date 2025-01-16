@@ -9,10 +9,13 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  Modal,
+  PanResponder,
+  Animated,
 } from 'react-native';
 import {COLORS} from '../../consts/COLOR';
 import ArrowButton from '../../component/ArrowButton';
-import commonStyle from '../../style/commonStyle';
+import commonStyle, {windowHeight} from '../../style/commonStyle';
 import Share from '../../logo/Share.svg';
 import STAR from '../../logo/STAR.svg';
 import STAR2 from '../../logo/STAR2.svg';
@@ -20,6 +23,9 @@ import MostPopular from '../../component/MostPopular.';
 import JustForYou from '../../component/JustForYou';
 import {NavigationProp} from '@react-navigation/native';
 import {TouchableButton} from '../../component/Button';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import {BlurView} from '@react-native-community/blur';
+import typography from '../../style/typography';
 interface ProductFullProps {
   navigation: NavigationProp<any>;
 }
@@ -29,6 +35,7 @@ const {width} = Dimensions.get('window');
 const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
   const flatListRef = useRef<FlatList>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   const productDetails = {
     price: '$17.00',
@@ -76,6 +83,78 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <GestureRecognizer onSwipeDown={() => setIsVisible(false)}>
+        <Modal transparent animationType="slide" visible={isVisible}>
+          <View style={styles.modalContent}>
+            <View
+              style={{
+                flexDirection: 'row',
+                backgroundColor: '#F8FAFF',
+                paddingHorizontal: 20,
+                paddingVertical: 30,
+                borderTopRightRadius: 20,
+                borderTopLeftRadius: 20,
+              }}>
+              <View>
+                <Image
+                  source={require('../../assets/image/NI1.png')}
+                  style={{height: 75, width: 75, borderRadius: 5}}
+                />
+              </View>
+              <View
+                style={{gap: 5, marginLeft: 10, justifyContent: 'flex-end'}}>
+                <View>
+                  <Text style={styles.price}>{productDetails.price}</Text>
+                </View>
+                <View style={{flexDirection: 'row', gap: 10}}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 500,
+                      fontFamily: 'Raleway',
+                      backgroundColor: '#E5EBFC',
+                      padding: 6,
+                      paddingHorizontal: 15,
+                      borderRadius: 5,
+                    }}>
+                    {productDetails.variations.color}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 500,
+                      fontFamily: 'Raleway',
+                      backgroundColor: '#E5EBFC',
+                      padding: 6,
+                      paddingHorizontal: 15,
+                      borderRadius: 5,
+                    }}>
+                    {productDetails.variations.size}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View style={{marginLeft:10}}>
+              <Text style={{marginLeft:10, fontFamily:"Raleway", fontSize:17 , fontWeight:700, marginVertical:10}}>Color Options</Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {productDetails.variations.images.map((item, index) => (
+                  <View key={index} style={{alignItems: 'center'}}>
+                    <Image
+                      source={item}
+                      style={{
+                        height: 80,
+                        width: 80,
+                        borderRadius: 5,
+                        margin: 5,
+                      }}
+                    />
+                  </View>
+                ))}
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
+      </GestureRecognizer>
       <ScrollView>
         {/* Slider Section */}
         <View>
@@ -140,7 +219,11 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
                   </Text>
                 </TouchableOpacity>
               </View>
-              <ArrowButton onPress={() => {}} />
+              <ArrowButton
+                onPress={() => {
+                  setIsVisible(true);
+                }}
+              />
             </View>
           </View>
           <View style={{marginBottom: 20}}>
@@ -226,7 +309,7 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
           </View>
           {productDetails.ratingAndReviews.reviews.map((review, index) => (
             <View key={index} style={styles.review}>
-              <View style={{width: '15%'}}> 
+              <View style={{width: '15%'}}>
                 <Image
                   source={review.reviewerImage}
                   style={styles.reviewerImage}
@@ -268,6 +351,14 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
         <JustForYou title="You Might Like" navigation={navigation} />
       </ScrollView>
       <View></View>
+      {isVisible && (
+        <BlurView
+          style={styles.absolute}
+          blurType="light"
+          blurAmount={7}
+          reducedTransparencyFallbackColor="rgba(164, 37, 37, 0.35)"
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -463,21 +554,20 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   reviewerImage: {
-    marginTop:10,
-    marginLeft:10,
+    marginTop: 10,
+    marginLeft: 10,
     width: 44,
     height: 44,
     borderRadius: 20,
     marginRight: 10,
-    borderColor:'white',
-    borderWidth:2,
+    borderColor: 'white',
+    borderWidth: 2,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
 
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 2,
-
   },
   reviewerName: {
     fontSize: 16,
@@ -491,8 +581,8 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 400,
     fontFamily: 'Nunito',
-    lineHeight:18,
-    marginTop:10
+    lineHeight: 18,
+    marginTop: 10,
   },
   viewAllButton: {
     marginTop: 10,
@@ -505,6 +595,26 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: 'bold',
+  },
+  modalContent: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    // padding: 20,
+    marginTop: windowHeight * 0.35,
+  },
+  modalTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  absolute: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
   },
 });
 
