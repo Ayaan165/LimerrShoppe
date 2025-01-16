@@ -284,7 +284,8 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
           {Productes.map((product, index) => (
             <View key={index}>
               {/* Product Header */}
-              <View
+              <TouchableOpacity
+                // onPress={() => setIsOpen(isOpen === index ? null : index)}
                 style={{
                   flexDirection: 'row',
                   justifyContent: 'space-between',
@@ -320,7 +321,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
                   <ArrowButton onPress={()=>{navigation.navigate('ChatScreen')}} />
                 ) : (
                   <TouchableOpacity
-                    onPress={() => setIsOpen(isOpen === index ? null : index)}>
+                  onPress={() => setIsOpen(isOpen === index ? null : index)}>
                     {isOpen === index ? (
                       <DOWNARROW style={{margin: 10}} />
                     ) : (
@@ -328,7 +329,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
                     )}
                   </TouchableOpacity>
                 )}
-              </View>
+              </TouchableOpacity>
 
               {/* Subcategories */}
               {isOpen === index && (
@@ -341,7 +342,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
                     flexWrap: 'wrap',
                   }}>
                   {items.map((item, idx) => (
-                    <View
+                    <TouchableOpacity
                       key={idx}
                       style={{
                         width: '49%',
@@ -361,7 +362,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
                         }}>
                         {item}
                       </Text>
-                    </View>
+                    </TouchableOpacity>
                   ))}
                 </View>
               )}

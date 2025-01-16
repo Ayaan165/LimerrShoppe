@@ -1,16 +1,17 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, ViewStyle } from 'react-native';
 import Arrow from '../logo/Arrow.svg';
 import { COLORS } from '../consts/COLOR';
 
 interface ArrowButtonProps {
     onPress: () => void;
+    style?: ViewStyle;
 }
 
-const ArrowButton: React.FC<ArrowButtonProps> = ({onPress}) => {
+const ArrowButton: React.FC<ArrowButtonProps> = ({onPress , style}) => {
     return (
-        <TouchableOpacity style={styles.round} onPress={onPress}>
-        <Arrow />
+        <TouchableOpacity style={[styles.round, style]} onPress={onPress}>
+        <Arrow/>
       </TouchableOpacity>
     );
 };

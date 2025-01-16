@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet,Image, ScrollView} from 'react-native';
 import typography from '../style/typography';
-import PhotoFrame from './PhotoFrame';
+import {ClickablePhotoFrame} from './PhotoFrame';
 
 
 const TopProducts = () => {
@@ -22,7 +22,7 @@ const TopProducts = () => {
       </View>
       <ScrollView  horizontal style={{paddingHorizontal: 20 , paddingVertical: 10}} showsHorizontalScrollIndicator={false}>
         {topProducts.map((item, index) => (
-              <PhotoFrame
+              <ClickablePhotoFrame
               size={60}
               url={item.image}
               style={{marginLeft: 10}}

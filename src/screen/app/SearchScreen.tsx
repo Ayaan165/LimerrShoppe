@@ -230,7 +230,7 @@ const SearchScreen: React.FC<SearchScreenProps> = ({navigation}) => {
       </View>
       {!isFocused && searchText !== '' ? (
         <ScrollView>
-          <JustForYou title="" />
+          <JustForYou title="" navigation={navigation} />
         </ScrollView>
       ) : (
         <View style={[commonStyle.mh20]}>

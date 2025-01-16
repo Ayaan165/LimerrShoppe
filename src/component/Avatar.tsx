@@ -1,35 +1,61 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ViewStyle,
+  ImageSourcePropType,
+} from 'react-native';
 
-interface AvatarProps {}
+interface AvatarProps {
+  size?: number;
+  imageSource?: ImageSourcePropType;
+  backgroundColor?: string;
+  style?: ViewStyle;
+}
 
-const Avatar: React.FC<AvatarProps> = () => {
+const Avatar: React.FC<AvatarProps> = ({
+  size = 125,
+  imageSource = require('../assets/image/avatar.jpeg'),
+  backgroundColor = 'red',
+  style,
+}) => {
+  const innerSize = size - 15;
+
   return (
-    <View
-      style={{
-        height: 125,
-        width: 125,
-        borderRadius: 65,
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 3,
-      }}>
+    <TouchableOpacity
+      style={[
+        styles.outerCircle,
+        {
+          height: size,
+          width: size,
+          borderRadius: size / 2,
+          backgroundColor,
+        },
+        style,
+      ]}>
       <Image
-        source={require('../assets/image/avatar.jpeg')}
+        source={imageSource}
         style={{
-          height: 110,
-          width: 110,
-          borderRadius: 55,
-          //   marginBottom: 10,
+          height: innerSize,
+          width: innerSize,
+          borderRadius: innerSize / 2,
         }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  outerCircle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 3,
+  },
+});
 
 export default Avatar;
