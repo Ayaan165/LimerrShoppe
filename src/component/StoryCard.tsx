@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Play from '../logo/Play.svg';
 
 interface StoryCardProps {
@@ -11,14 +11,14 @@ interface StoryCardProps {
 
 const StoryCard: React.FC<StoryCardProps> = ({ title, description, imageUrl, uri }) => {
   return (
-    <View style={{ marginLeft: 6, height: 175, width: 104, alignItems: 'center', justifyContent: 'center' }}>
+    <TouchableOpacity style={{ marginLeft: 6, height: 175, width: 104, alignItems: 'center', justifyContent: 'center' }}>
       <Image
         resizeMode="cover"
         source={uri ? { uri } : imageUrl}
         style={{ height: 175, width: 104, borderRadius: 11 }}
       />
       <Play style={{ position: 'absolute' }} />
-    </View>
+    </TouchableOpacity>
   );
 };
 

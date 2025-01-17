@@ -52,13 +52,19 @@ import {windowWidth, windowHeight} from '../../style/commonStyle';
 import {COLORS} from '../../consts/COLOR';
 import typography from '../../style/typography';
 import {TouchableButton} from '../../component/Button';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import { NavigationProp } from '@react-navigation/native';
+
+interface StoryScreenProps{
+  navigation: NavigationProp<any>;
+}
 
 // import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
 
-const StoryScreen: React.FC = () => {
+const StoryScreen: React.FC<StoryScreenProps> = ({navigation}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const bottomTabHeight = useBottomTabBarHeight();
   const usableHeight = windowHeight - bottomTabHeight;
@@ -113,7 +119,7 @@ const StoryScreen: React.FC = () => {
               borderWidth: 2,
               top: 380,
               left: 330,
-              zIndex:1
+              zIndex: 1,
             }}></TouchableOpacity>
           <View
             style={{
@@ -377,37 +383,39 @@ const StoryScreen: React.FC = () => {
   };
 
   return (
+    <GestureRecognizer onSwipeDown={() => navigation.goBack()}>
     <SafeAreaView style={[styles.container, {height: usableHeight}]}>
-      {/* Upper View - Slider */}
-      <View style={styles.upperView}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}>
-          {slides.map(slide => (
-            <View key={slide.id} style={styles.slide}>
-              {slide.content}
-            </View>
-          ))}
-        </ScrollView>
+        {/* Upper View - Slider */}
+        <View style={styles.upperView}>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}>
+            {slides.map(slide => (
+              <View key={slide.id} style={styles.slide}>
+                {slide.content}
+              </View>
+            ))}
+          </ScrollView>
 
-        {/* Dots Indicator */}
-      </View>
-
-      {/* Lower View - Navigator */}
-      <View style={styles.lowerView}>
-        <View style={styles.dotsContainer}>
-          {slides.map((_, index) => (
-            <View
-              key={index}
-              style={[styles.dot, index === currentIndex && styles.activeDot]}
-            />
-          ))}
+          {/* Dots Indicator */}
         </View>
-      </View>
+
+        {/* Lower View - Navigator */}
+        <View style={styles.lowerView}>
+          <View style={styles.dotsContainer}>
+            {slides.map((_, index) => (
+              <View
+                key={index}
+                style={[styles.dot, index === currentIndex && styles.activeDot]}
+              />
+            ))}
+          </View>
+        </View>
     </SafeAreaView>
+      </GestureRecognizer>
   );
 };
 

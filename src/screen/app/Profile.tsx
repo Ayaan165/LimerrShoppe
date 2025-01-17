@@ -30,13 +30,15 @@ import Categories from '../../component/Categories';
 import FlashSale from '../../component/FlashSale';
 import TopProducts from '../../component/TopProducts';
 import JustForYou from '../../component/JustForYou';
-import { NavigationProp } from '@react-navigation/native';
+import {NavigationProp} from '@react-navigation/native';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
-interface ProfileScreenProps{
+interface ProfileScreenProps {
   navigation: NavigationProp<any>;
 }
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
+  const bottomViewHeight = useBottomTabBarHeight();
   const styles = useStyle();
   return (
     <SafeAreaView style={styles.container}>
@@ -157,18 +159,23 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             <TintedButton
               title="To Review"
               onPress={() => {
-                  navigation.navigate('StoryScreen');
+                navigation.navigate('StoryScreen');
               }}
             />
           </View>
         </View>
-        <Stories />
+        <Stories navigation={navigation} />
         <NewItem />
         <MostPopular />
         <Categories />
-        <FlashSale/>
+        <FlashSale />
         <TopProducts />
-        <JustForYou navigation={navigation}/>
+        <JustForYou navigation={navigation} />
+        <View
+          style={{
+            height: bottomViewHeight,
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

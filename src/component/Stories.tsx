@@ -1,10 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, Touchable, TouchableOpacity} from 'react-native';
 import commonStyle from '../style/commonStyle';
 import typography from '../style/typography';
-import Play from '../logo/Play.svg'
+import Play from '../logo/Play.svg';
+import { NavigationProp } from '@react-navigation/native';
 
-const Stories = () => {
+interface StoriesProps {
+navigation: NavigationProp<any>;
+}
+
+const Stories:React.FC<StoriesProps> = ({navigation}) => {
   const ImagePaths = [
     {id: 'S1', src: require('../assets/image/S1.png')},
     {id: 'S2', src: require('../assets/image/S2.png')},
@@ -28,7 +33,8 @@ const Stories = () => {
           horizontal
           data={ImagePaths}
           renderItem={({item}) => (
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate('StoryScreen')}
               style={{
                 marginLeft: 6,
                 height: 175,
@@ -42,7 +48,7 @@ const Stories = () => {
                 style={{height: 175, width: 104, borderRadius: 11}}
               />
               <Play style={{position: 'absolute'}} />
-            </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(item, index) => index.toString()}
         />

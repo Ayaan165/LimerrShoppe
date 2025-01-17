@@ -257,12 +257,16 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
               <View style={styles.actionButtons}>
                 <BlackButton
                   title="Add to Cart"
-                  onPress={() => {setIsVisible(false)}}
+                  onPress={() => {
+                    setIsVisible(false);
+                  }}
                   style={styles.actionButton}
                 />
                 <TouchableButton
                   title="Buy Now"
-                  onPress={() => {setIsVisible(false)}}
+                  onPress={() => {
+                    setIsVisible(false);
+                  }}
                   style={styles.actionButton}
                 />
               </View>
@@ -507,8 +511,8 @@ const styles = StyleSheet.create({
   },
   modalVariationText: {
     width: 75,
-    alignSelf:'center',
-    textAlign:'center',
+    alignSelf: 'center',
+    textAlign: 'center',
     fontSize: 14,
     fontWeight: '500',
     fontFamily: 'Raleway',
@@ -538,8 +542,8 @@ const styles = StyleSheet.create({
   },
   checkforSelectedColor: {
     position: 'absolute',
-    bottom:10,
-    left:10
+    bottom: 10,
+    left: 10,
   },
   sizeContainer: {
     marginHorizontal: 20,
@@ -861,7 +865,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     // padding: 20,
-    marginTop: windowHeight < 800 ? windowHeight * 0.2 : windowHeight * 0.35,
+    marginTop: windowHeight < 800 ? windowHeight * 0.2 : windowHeight * 0.33,
     justifyContent: 'space-between',
     paddingBottom: 20,
   },

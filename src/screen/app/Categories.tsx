@@ -207,6 +207,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import typography from '../../style/typography';
@@ -251,14 +252,13 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* <StatusBar hidden/> */}
       <View style={styles.header}>
         <Text style={styles.title}>All Categories</Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Close2 />
         </TouchableOpacity>
       </View>
-
-      {/* Selector Options */}
       <View style={styles.selectorView}>
         {option.map((item, index) => (
           <TouchableOpacity
@@ -376,7 +376,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#fff',
   },
   title: {

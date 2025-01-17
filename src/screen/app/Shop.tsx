@@ -25,12 +25,14 @@ import {NavigationProp} from '@react-navigation/native';
 import CategoriesOption from '../../component/CategoriesOption';
 import Close from '../../logo/Close.svg';
 import CAM from '../../logo/CAM.svg';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 interface ShopScreenProps {
   navigation: NavigationProp<any>;
 }
 const {width} = Dimensions.get('window');
 const Shop: React.FC<ShopScreenProps> = ({navigation}) => {
+  const bottomViewHeight = useBottomTabBarHeight();
   const banners = [
     {
       image: require('../../assets/image/BANNER1.png'), // Replace with your image path
@@ -88,7 +90,7 @@ const Shop: React.FC<ShopScreenProps> = ({navigation}) => {
               Shop
             </Text>
             <TouchableOpacity
-            onPress={navigateToSearch}
+              onPress={navigateToSearch}
               style={{
                 marginLeft: 10,
                 flex: 1,
@@ -120,9 +122,9 @@ const Shop: React.FC<ShopScreenProps> = ({navigation}) => {
                 )}
               </View>
               <CAM />
-            </TouchableOpacity> 
+            </TouchableOpacity>
           </View>
-          <CategoriesOption/>
+          <CategoriesOption />
         </View>
         <View style={styles.bannerContainer}>
           <FlatList
@@ -159,6 +161,11 @@ const Shop: React.FC<ShopScreenProps> = ({navigation}) => {
         <FlashSale />
         <MostPopular />
         <JustForYou navigation={navigation} />
+        <View
+          style={{
+            height: bottomViewHeight,
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );
