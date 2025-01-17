@@ -12,20 +12,25 @@ import {
   Modal,
   PanResponder,
   Animated,
+  Pressable,
 } from 'react-native';
 import {COLORS} from '../../consts/COLOR';
 import ArrowButton from '../../component/ArrowButton';
-import commonStyle, {windowHeight} from '../../style/commonStyle';
+import commonStyle, {windowHeight, windowWidth} from '../../style/commonStyle';
 import Share from '../../logo/Share.svg';
 import STAR from '../../logo/STAR.svg';
 import STAR2 from '../../logo/STAR2.svg';
 import MostPopular from '../../component/MostPopular.';
 import JustForYou from '../../component/JustForYou';
 import {NavigationProp} from '@react-navigation/native';
-import {TouchableButton} from '../../component/Button';
+import {BlackButton, TouchableButton} from '../../component/Button';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import {BlurView} from '@react-native-community/blur';
 import typography from '../../style/typography';
+import More from '../../logo/More.svg';
+import Less from '../../logo/Less.svg';
+import Heart from '../../logo/Heart.svg';
+import Check from '../../logo/Check.svg';
 interface ProductFullProps {
   navigation: NavigationProp<any>;
 }
@@ -33,9 +38,22 @@ interface ProductFullProps {
 const {width} = Dimensions.get('window');
 
 const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
+  const increaseRef = useRef(null);
+  const decreaseRef = useRef(null);
   const flatListRef = useRef<FlatList>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [Quantity, setQuantity] = useState(1);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const Size = [
+    {id: 1, size: 'S', status: 'available'},
+    {id: 2, size: 'M', status: 'available'},
+    {id: 3, size: 'L', status: 'available'},
+    {id: 4, size: 'XL', status: 'available'},
+    {id: 5, size: 'XXL', status: 'unavailable'},
+    {id: 6, size: 'XXXL', status: 'unavailable'},
+  ];
 
   const productDetails = {
     price: '$17.00',
@@ -45,9 +63,21 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
       color: 'Pink',
       size: 'M',
       images: [
-        require('../../assets/image/FS1.png'),
-        require('../../assets/image/FS2.png'),
-        require('../../assets/image/FS3.png'),
+        {
+          id: 1,
+          color: 'Pink',
+          Url: require('../../assets/image/FS1.png'),
+        },
+        {
+          id: 2,
+          color: 'Blue',
+          Url: require('../../assets/image/FS2.png'),
+        },
+        {
+          id: 3,
+          color: 'Yellow',
+          Url: require('../../assets/image/FS3.png'),
+        },
       ],
     },
     specifications: {
@@ -80,77 +110,162 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
     const index = Math.round(event.nativeEvent.contentOffset.x / width);
     setActiveIndex(index);
   };
-
+  const IncreaseItem = () => {
+    if (Quantity < 10) {
+      setQuantity(Quantity + 1);
+    }
+  };
+  const DecreaaseItem = () => {
+    if (Quantity > 1) {
+      setQuantity(Quantity - 1);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <GestureRecognizer onSwipeDown={() => setIsVisible(false)}>
         <Modal transparent animationType="slide" visible={isVisible}>
           <View style={styles.modalContent}>
-            <View
-              style={{
-                flexDirection: 'row',
-                backgroundColor: '#F8FAFF',
-                paddingHorizontal: 20,
-                paddingVertical: 30,
-                borderTopRightRadius: 20,
-                borderTopLeftRadius: 20,
-              }}>
-              <View>
-                <Image
-                  source={require('../../assets/image/NI1.png')}
-                  style={{height: 75, width: 75, borderRadius: 5}}
-                />
-              </View>
-              <View
-                style={{gap: 5, marginLeft: 10, justifyContent: 'flex-end'}}>
+            <View>
+              <View style={styles.modalHeader}>
                 <View>
-                  <Text style={styles.price}>{productDetails.price}</Text>
+                  <Image
+                    source={require('../../assets/image/NI1.png')}
+                    style={styles.modalImage}
+                  />
                 </View>
-                <View style={{flexDirection: 'row', gap: 10}}>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 500,
-                      fontFamily: 'Raleway',
-                      backgroundColor: '#E5EBFC',
-                      padding: 6,
-                      paddingHorizontal: 15,
-                      borderRadius: 5,
-                    }}>
-                    {productDetails.variations.color}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 500,
-                      fontFamily: 'Raleway',
-                      backgroundColor: '#E5EBFC',
-                      padding: 6,
-                      paddingHorizontal: 15,
-                      borderRadius: 5,
-                    }}>
-                    {productDetails.variations.size}
-                  </Text>
+                <View style={styles.modalHeaderContent}>
+                  <View>
+                    <Text style={styles.price}>{productDetails.price}</Text>
+                  </View>
+                  <View style={styles.modalVariationContainer}>
+                    <Text style={styles.modalVariationText}>
+                      {selectedColor || productDetails.variations.color}
+                    </Text>
+                    <Text style={styles.modalVariationText}>
+                      {selectedSize || productDetails.variations.size}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.colorOptionsContainer}>
+                <Text style={styles.colorOptionsTitle}>Color Options</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                  {productDetails.variations.images.map((item, index) => (
+                    <Pressable
+                      key={index}
+                      style={styles.colorOptionItem}
+                      onPress={() => setSelectedColor(item.color)}>
+                      <Image
+                        source={item.Url}
+                        style={styles.colorOptionImage}
+                      />
+                      {selectedColor === item.color && (
+                        <Check style={styles.checkforSelectedColor} />
+                      )}
+                    </Pressable>
+                  ))}
+                </ScrollView>
+              </View>
+              <View style={styles.sizeContainer}>
+                <Text style={styles.sizeTitle}>Size</Text>
+                <View style={styles.sizeOptionsContainer}>
+                  {Size.map((item, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        if (item.status === 'available') {
+                          setSelectedSize(item.size);
+                        }
+                      }}
+                      disabled={item.status === 'unavailable'}
+                      style={[
+                        styles.sizeOption,
+                        {
+                          backgroundColor:
+                            item.status === 'unavailable'
+                              ? '#E5EBFC'
+                              : item.size === selectedSize
+                              ? '#E5EBFC'
+                              : '#F8FAFF',
+                          borderColor:
+                            item.size === selectedSize
+                              ? COLORS.primaryButton
+                              : '#F8FAFF',
+                        },
+                      ]}>
+                      <Text
+                        style={[
+                          styles.sizeOptionText,
+                          {
+                            color:
+                              item.status === 'unavailable'
+                                ? '#BEC8E5'
+                                : '#000',
+                          },
+                        ]}>
+                        {item.size}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                <View style={styles.quantityContainer}>
+                  <View>
+                    <Text style={styles.quantityTitle}>Quantity</Text>
+                  </View>
+                  <View style={styles.quantityControls}>
+                    <Pressable
+                      onPress={DecreaaseItem}
+                      ref={decreaseRef}
+                      style={({pressed}) => [
+                        styles.quantityButton,
+                        {
+                          backgroundColor: pressed
+                            ? 'rgb(210, 230, 255)'
+                            : 'white',
+                        },
+                      ]}>
+                      <Less />
+                    </Pressable>
+                    <View style={styles.quantityDisplay}>
+                      <Text style={styles.quantityText}>{Quantity}</Text>
+                    </View>
+                    <Pressable
+                      onPress={IncreaseItem}
+                      ref={increaseRef}
+                      style={({pressed}) => [
+                        styles.quantityButton,
+                        {
+                          backgroundColor: pressed
+                            ? 'rgb(210, 230, 255)'
+                            : 'white',
+                        },
+                      ]}>
+                      <More />
+                    </Pressable>
+                  </View>
                 </View>
               </View>
             </View>
-            <View style={{marginLeft:10}}>
-              <Text style={{marginLeft:10, fontFamily:"Raleway", fontSize:17 , fontWeight:700, marginVertical:10}}>Color Options</Text>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {productDetails.variations.images.map((item, index) => (
-                  <View key={index} style={{alignItems: 'center'}}>
-                    <Image
-                      source={item}
-                      style={{
-                        height: 80,
-                        width: 80,
-                        borderRadius: 5,
-                        margin: 5,
-                      }}
-                    />
-                  </View>
-                ))}
-              </ScrollView>
+            <View style={styles.bottomActions}>
+              <View style={styles.heartButtonContainer}>
+                <View style={styles.heartButton}>
+                  <TouchableOpacity>
+                    <Heart />
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View style={styles.actionButtons}>
+                <BlackButton
+                  title="Add to Cart"
+                  onPress={() => {setIsVisible(false)}}
+                  style={styles.actionButton}
+                />
+                <TouchableButton
+                  title="Buy Now"
+                  onPress={() => {setIsVisible(false)}}
+                  style={styles.actionButton}
+                />
+              </View>
             </View>
           </View>
         </Modal>
@@ -168,7 +283,7 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
             onScroll={handleScroll}
             renderItem={({item}) => (
               <View style={styles.sliderItem}>
-                <Image source={item} style={styles.sliderImage} />
+                <Image source={item.Url} style={styles.sliderImage} />
               </View>
             )}
           />
@@ -234,7 +349,7 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => (
                 <View style={styles.thumbnailWrapper}>
-                  <Image source={item} style={styles.thumbnail} />
+                  <Image source={item.Url} style={styles.thumbnail} />
                 </View>
               )}
             />
@@ -356,7 +471,7 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
           style={styles.absolute}
           blurType="light"
           blurAmount={7}
-          reducedTransparencyFallbackColor="rgba(164, 37, 37, 0.35)"
+          // reducedTransparencyFallbackColor="rgba(36, 110, 73, 0.57)"
         />
       )}
     </SafeAreaView>
@@ -367,6 +482,150 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    backgroundColor: '#F8FAFF',
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+  },
+  modalImage: {
+    height: 75,
+    width: 75,
+    borderRadius: 5,
+  },
+  modalHeaderContent: {
+    gap: 5,
+    marginLeft: 10,
+    justifyContent: 'flex-end',
+  },
+  modalVariationContainer: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  modalVariationText: {
+    width: 75,
+    alignSelf:'center',
+    textAlign:'center',
+    fontSize: 14,
+    fontWeight: '500',
+    fontFamily: 'Raleway',
+    backgroundColor: '#E5EBFC',
+    padding: 6,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+  },
+  colorOptionsContainer: {
+    marginLeft: 10,
+  },
+  colorOptionsTitle: {
+    marginLeft: 10,
+    fontFamily: 'Raleway',
+    fontSize: 17,
+    fontWeight: '700',
+    marginVertical: 10,
+  },
+  colorOptionItem: {
+    alignItems: 'center',
+  },
+  colorOptionImage: {
+    height: 80,
+    width: 80,
+    borderRadius: 5,
+    margin: 5,
+  },
+  checkforSelectedColor: {
+    position: 'absolute',
+    bottom:10,
+    left:10
+  },
+  sizeContainer: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+  },
+  sizeTitle: {
+    fontFamily: 'Raleway700',
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  sizeOptionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    flexWrap: 'wrap',
+    gap: 5,
+  },
+  sizeOption: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 15,
+    borderRadius: 5,
+    height: 35,
+    flex: 1,
+    borderWidth: 1,
+  },
+  sizeOptionText: {
+    fontFamily: 'Raleway500',
+    fontSize: 14,
+  },
+  quantityContainer: {
+    marginVertical: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  quantityTitle: {
+    fontFamily: 'Raleway',
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  quantityControls: {
+    gap: 10,
+    flexDirection: 'row',
+  },
+  quantityButton: {
+    borderRadius: 25,
+  },
+  quantityDisplay: {
+    backgroundColor: '#E5EBFC',
+    height: 50,
+    width: 75,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  quantityText: {
+    fontSize: 29,
+    fontFamily: 'Raleway',
+    fontWeight: '500',
+  },
+  bottomActions: {
+    margin: 20,
+    width: '100%',
+    flexDirection: 'row',
+  },
+  heartButtonContainer: {
+    width: windowWidth * 0.2 - 20,
+    justifyContent: 'center',
+  },
+  heartButton: {
+    height: 45,
+    width: 50,
+    borderRadius: 15,
+    backgroundColor: COLORS.inputBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  actionButtons: {
+    width: windowWidth * 0.8 - 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  actionButton: {
+    width: '49%',
+    height: 50,
   },
   sliderItem: {
     width,
@@ -602,7 +861,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     // padding: 20,
-    marginTop: windowHeight * 0.35,
+    marginTop: windowHeight < 800 ? windowHeight * 0.2 : windowHeight * 0.35,
+    justifyContent: 'space-between',
+    paddingBottom: 20,
   },
   modalTitle: {
     fontSize: 16,
