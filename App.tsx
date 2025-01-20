@@ -12,6 +12,9 @@ const App = () => {
         isSignedIn ? <AppStack/> : <AuthNavigation />
       }
     </NavigationContainer>
+    // <NavigationContainer>
+    //   <AuthNavigation/>
+    // </NavigationContainer>
   );
 };
 export default App;

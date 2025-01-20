@@ -120,12 +120,12 @@ const PasswordRecoveryCode: React.FC<PasswordRecoveryCodeProps> = ({
                   commonStyle.textAlignCenter,
                   commonStyle.mt10,
                   typography.Raleway,
-                  {color: COLORS.black20},
+                  {color: COLORS.black20, lineHeight:26},
                 ]}>
                 You reached out maximum {'\n'}amount of attempts.{'\n'} Please,
                 try later.
               </Text>
-              <BlackButton onPress={() => setIsVisible(false)} />
+              <BlackButton onPress={() => setIsVisible(false)} title='Okey'/>
             </View>
           </SafeAreaView>
         </Modal>
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17,
     textAlign: 'center',
-    backgroundColor: COLORS.inputBackground,
+    backgroundColor: '#E5EBFC',
     fontSize: 24,
     borderRadius: 20,
     marginBottom: 50,

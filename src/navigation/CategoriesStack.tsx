@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 
 const  CategoriesStack = () => {
     return (
-        <Stack.Navigator initialRouteName="Categories" screenOptions={{ headerShown: false ,statusBarTranslucent:true}}>
+        <Stack.Navigator initialRouteName="Categories" screenOptions={{ headerShown: false}} >
             <Stack.Screen name="Categories" component={Categories} />
         </Stack.Navigator>
     );

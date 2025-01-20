@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../consts/COLOR';
-import { Platform } from 'react-native';
-
+import {Platform} from 'react-native';
 
 const typography = StyleSheet.create({
   boldTitle52: {
@@ -15,16 +14,16 @@ const typography = StyleSheet.create({
   },
   buttonText22: {
     fontSize: 22,
-    fontFamily:'Raleway300',
+    fontFamily: 'Raleway300',
   },
   regulartext19: {
     fontSize: 19,
-    fontFamily:'Raleway300',
+    fontFamily: 'Raleway300',
   },
   regulartext15: {
     fontSize: 15,
     // fontWeight: 300,
-    fontFamily:'Raleway300',
+    fontFamily: 'Raleway300',
   },
   textBold28: {
     fontSize: 28,
@@ -41,29 +40,32 @@ const typography = StyleSheet.create({
   },
   Boldtext16: {
     fontSize: 16,
-    fontFamily:'Raleway700',
+    fontFamily: 'Raleway700',
   },
   textBold14: {
     fontSize: 14,
-    fontFamily:'Raleway700',
-    lineHeight:18
+    fontFamily: 'Raleway700',
+    lineHeight: 18,
   },
-  w500s18 :{
-    fontFamily:'Raleway500',
-    fontSize:18,
+  w500s18: {
+    fontFamily: 'Raleway500',
+    fontSize: 18,
   },
-  w500s15 :{
-    fontFamily:'Raleway500',
-    fontSize:15,
+  w500s15: {
+    fontFamily: 'Raleway500',
+    fontSize: 15,
   },
-  w500s16 :{
-    fontFamily:'Raleway500',
-    fontSize:16,
-    lineHeight:20,
-    color:COLORS.white,
+  w500s16: {
+    fontFamily: 'Raleway500',
+    fontSize: 16,
+    lineHeight: 20,
+    color: COLORS.white,
   },
   Raleway: {
-    // fontFamily: 'Raleway',
+    fontFamily: 'Raleway',
+  },
+  Raleway700: {
+    fontFamily: 'Raleway700',
   },
   Nunito: {
     // fontFamily: 'nunito',
@@ -71,30 +73,58 @@ const typography = StyleSheet.create({
   NunitoIT: {
     fontFamily: 'numitoIt',
   },
-  w400s10:{
-    fontFamily:'Raleway400',
-    fontSize:10,
+  w400s10: {
+    fontFamily: 'Raleway400',
+    fontSize: 10,
   },
-  w500s12:{
-    fontFamily:'Raleway500',
-    fontSize:12,
+  w500s12: {
+    fontFamily: 'Raleway500',
+    fontSize: 12,
   },
-  w600s13:{
-    fontFamily:'Raleway600',
-    fontSize:13
+  w600s13: {
+    fontFamily: 'Raleway600',
+    fontSize: 13,
   },
-  w400s12:{
-    fontFamily:'Raleway400',
-    fontSize:12,
+  w400s12: {
+    fontFamily: 'Raleway400',
+    fontSize: 12,
   },
-  boldText17:{
-    fontSize:17,
-    fontFamily:'Raleway700',
+  boldText17: {
+    fontSize: 17,
+    // fontFamily:'Raleway',
+    // fontWeight:700
   },
-  w500s17:{
-    fontSize:17,
-    fontFamily:'Raleway500',
-  }
+  w500s17: {
+    fontSize: 17,
+    fontFamily: 'Raleway500',
+  },
+
+  // NEW TYPOGRAPHY
+
+  RaleWay700: {
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '700'},
+      android: {fontFamily: 'Raleway700'},
+    }),
+  },
+  RaleWay600: {
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '600'},
+      android: {fontFamily: 'Raleway600'},
+    }),
+  },
+  Nunito400: {
+    ...Platform.select({
+      ios: {fontFamily: 'Nunito', fontWeight: '400'},
+      android: {fontFamily: 'Nunito400'},
+    }),
+  },
+  Nunito800: {
+    ...Platform.select({
+      ios: {fontFamily: 'Nunito', fontWeight: '800'},
+      android: {fontFamily: 'Nunito800'},
+    }),
+  },
 });
 
 export default typography;

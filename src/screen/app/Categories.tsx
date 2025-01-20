@@ -252,7 +252,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <StatusBar hidden/> */}
+      <StatusBar/>
       <View style={styles.header}>
         <Text style={styles.title}>All Categories</Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -376,7 +376,7 @@ const Categories: React.FC<CategoriesProps> = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: '#fff',
   },
   title: {
@@ -388,7 +388,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 10,
   },
   selectorView: {
     flexDirection: 'row',

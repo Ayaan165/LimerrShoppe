@@ -461,7 +461,7 @@ const ProductFull: React.FC<ProductFullProps> = ({navigation}) => {
           ))}
           <TouchableButton
             title="View All Reviews"
-            onPress={() => {}}
+            onPress={() => {navigation.navigate('ReviewScreen')}}
             style={{width: '100%', height: 40, borderRadius: 10}}
             TextStyle={{fontWeight: 300, fontSize: 16, fontFamily: 'Nunito'}}
           />

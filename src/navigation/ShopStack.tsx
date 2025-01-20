@@ -4,6 +4,7 @@ import Shop from '../screen/app/Shop';
 import Categories from '../component/Categories';
 import Sale from '../screen/app/Sale';
 import SearchScreen from '../screen/app/SearchScreen';
+import FlashSale from '../component/FlashSale';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ const ShopStack = () => {
             <Stack.Screen name="sale" component={Sale} />
             <Stack.Screen name="Categories" component={Categories} />
             <Stack.Screen name="SearchScreen" component={SearchScreen} />
+            <Stack.Screen name="SaleScreen" component={Sale} />
         </Stack.Navigator>
     );
 };

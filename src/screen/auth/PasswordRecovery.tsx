@@ -33,12 +33,12 @@ const PasswordRecovery: React.FC<PasswordRecoveryProps> = ({navigation}) => {
           commonStyle.flex1,
           {paddingBottom: windowHeight * 0.1},
         ]}>
-        <View style={{alignItems: 'center', justifyContent: 'center', gap: 10}}>
-          <Avatar />
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <Avatar style={{marginBottom:15}} />
           <Text style={[typography.textBold21, commonStyle.mb10]}>
             Password Recovery
           </Text>
-          <Text style={[typography.regulartext19, commonStyle.textAlignCenter]}>
+          <Text style={[{fontSize:19, fontFamily:'Nunito', fontWeight:300}, commonStyle.textAlignCenter]}>
             How you would like to restore {'\n'}your password?
           </Text>
           <View style={[commonStyle.mt20, {gap: 10}]}>
@@ -83,8 +83,8 @@ const PasswordRecovery: React.FC<PasswordRecoveryProps> = ({navigation}) => {
               onPress={() => setMethod('Email')}>
               <Text
                 style={[
-                  typography.Raleway,
-                  {color: COLORS.black20, fontSize: 15, fontWeight: 500},
+                  
+                  {color: COLORS.black20, fontSize: 15, fontFamily:'Raleway'},
                 ]}>
                 Email
               </Text>
@@ -112,6 +112,11 @@ const PasswordRecovery: React.FC<PasswordRecoveryProps> = ({navigation}) => {
           title="Next"
           onPress={() => {
             navigation.navigate('passwordRecoveryCode');
+          }}
+          TextStyle={{
+            fontFamily:'Nunito',
+            fontWeight:300,
+            fontSize:22
           }}
         />
         <TransButton

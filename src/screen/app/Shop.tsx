@@ -136,13 +136,13 @@ const Shop: React.FC<ShopScreenProps> = ({navigation}) => {
             showsHorizontalScrollIndicator={false}
             onScroll={handleScroll}
             renderItem={({item}) => (
-              <View style={styles.bannerItem}>
+              <TouchableOpacity style={styles.bannerItem} onPress={() => {navigation.navigate('SaleScreen')}}>
                 <Image
                   source={item.image}
                   style={styles.bannerImage}
                   resizeMode="cover"
                 />
-              </View>
+              </TouchableOpacity>
             )}
           />
           {/* Pagination */}

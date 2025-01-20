@@ -32,7 +32,7 @@ const Selector: React.FC = () => {
             >
               {typeof option === "string" ? option : `${option}%`}
             </Text>
-            {selected === option && <Polygon style={{position:'absolute', top:0}}/>}
+            {selected === option && <Polygon style={{position:'absolute', top:-2}}/>}
           </TouchableOpacity>
         ))}
       </View>

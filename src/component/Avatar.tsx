@@ -17,7 +17,7 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({
   size = 125,
   imageSource = require('../assets/image/avatar.jpeg'),
-  backgroundColor = 'red',
+  backgroundColor = 'white',
   style,
 }) => {
   const innerSize = size - 15;
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.15,
     shadowRadius: 3.84,
     elevation: 3,
   },

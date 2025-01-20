@@ -1,17 +1,17 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import StartLogo from '../../logo/StartLogo.svg';
-import { TouchableButton } from '../../component/Button';
+import {TouchableButton} from '../../component/Button';
 import ArrowButton from '../../component/ArrowButton';
-import { COLORS } from '../../consts/COLOR';
+import {COLORS} from '../../consts/COLOR';
 
-import { NavigationProp } from '@react-navigation/native';
+import {NavigationProp} from '@react-navigation/native';
 
 interface StartScreenProps {
   navigation: NavigationProp<any>;
 }
 
-const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
+const StartScreen: React.FC<StartScreenProps> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -29,6 +29,7 @@ const StartScreen: React.FC<StartScreenProps> = ({ navigation }) => {
           onPress={() => {
             navigation.navigate('createAccount');
           }}
+          TextStyle={{color: '#f3f3f3', fontSize: 22, fontFamily: 'Nunito-Light'}}
         />
         <View style={styles.row}>
           <Text style={styles.lightText2}>I already have an account</Text>
@@ -54,18 +55,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoBackground: {
+    height: 130,
+    width: 130,
+    borderRadius: 75,
     marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.white,
+    shadowColor: COLORS.black,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   mainTitle: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: 52,
+    fontFamily: 'Raleway-Bold',
     color: COLORS.black,
     marginBottom: 10,
   },
   lightText: {
-    fontSize: 16,
-    color: COLORS.black,
+    fontSize: 19,
+    color: COLORS.black20,
     textAlign: 'center',
+    lineHeight: 33,
+
+    fontFamily: 'Nunito-Light',
   },
   bottomContainer: {
     marginBottom: 20,
@@ -77,8 +95,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   lightText2: {
-    fontSize: 16,
-    color: COLORS.black,
+    fontSize: 15,
+    fontFamily: 'Nunito-Light',
+    color: COLORS.black20,
   },
 });
 

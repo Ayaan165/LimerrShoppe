@@ -2,6 +2,42 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Nunito.ttf",
+      "sha1": "c2adb9c3bcb684afc16cab5e70e8da3d3700a91e"
+    },
+    {
+      "path": "src/assets/fonts/Nunito200.ttf",
+      "sha1": "4ddd754e262de6dceba31e08b7403849d37c0d8a"
+    },
+    {
+      "path": "src/assets/fonts/Nunito300.ttf",
+      "sha1": "c570f483013f57db1a325ae1ddc2e11c115bb441"
+    },
+    {
+      "path": "src/assets/fonts/Nunito400.ttf",
+      "sha1": "465c464793593babb53e51e2a56562cdd79c237d"
+    },
+    {
+      "path": "src/assets/fonts/Nunito500.ttf",
+      "sha1": "941255b6a8c1e2d286ed9613bd6b354e2423dad9"
+    },
+    {
+      "path": "src/assets/fonts/Nunito600.ttf",
+      "sha1": "047ca2a59c253520cc46b3506744fad6ef8192c6"
+    },
+    {
+      "path": "src/assets/fonts/Nunito700.ttf",
+      "sha1": "d8091536d0fab37a3239067f708a0221070835da"
+    },
+    {
+      "path": "src/assets/fonts/Nunito800.ttf",
+      "sha1": "67f6aa1374efae5fc8f457fb92f721f49ecd45ba"
+    },
+    {
+      "path": "src/assets/fonts/Nunito900.ttf",
+      "sha1": "01abc1142e597b9a7748eb2d14ff823d65a54f01"
+    },
+    {
       "path": "src/assets/fonts/Raleway.ttf",
       "sha1": "033e1328adda368109649349a674c71f08f3b393"
     },
@@ -44,14 +80,6 @@
     {
       "path": "src/assets/fonts/RalewaySemiBold.ttf",
       "sha1": "3dd2bfca1944f82e928417d0399b8725b83728aa"
-    },
-    {
-      "path": "src/assets/fonts/numitoIt.ttf",
-      "sha1": "0b4c3a612cf31e069014ede3a502381c034fc736"
-    },
-    {
-      "path": "src/assets/fonts/nunito.ttf",
-      "sha1": "c2adb9c3bcb684afc16cab5e70e8da3d3700a91e"
     }
   ]
 }

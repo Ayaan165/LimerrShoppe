@@ -89,15 +89,15 @@ const Discount: React.FC = () => {
               <Text style={[typography.w400s12, typography.Nunito]}>
                 {item.details}
               </Text>
-              <View style={[commonStyle.flexDirectionRow, commonStyle.alignItemsEnd]}>
-                <Text style={[typography.boldText17, typography.Raleway]}>
+              <View style={[commonStyle.flexDirectionRow,commonStyle.alignItemsEnd]}>
+                <Text style={[typography.boldText17, typography.Raleway700]}>
                   {item.Discounted_price}
                 </Text>
                 <Text
                   style={{
-                    fontWeight: 700,
+                    // fontWeight: 700,
                     fontSize: 14,
-                    fontFamily: 'Raleway',
+                    fontFamily: 'Raleway700',
                     color: '#F1AEAE',
                     textDecorationLine: 'line-through',
                   }}>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   productItem: {
-    width: '48%', // Two columns with 2% gap between them
+    width: '47%', // Two columns with 2% gap between them
     marginBottom: 20,
   },
   productImageContainer: {

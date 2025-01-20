@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
 import Bubbles from '../../logo/Bubbles.svg';
 import Timer from '../../component/Timer';
 import commonStyle, {windowHeight, windowWidth} from '../../style/commonStyle';
@@ -9,12 +16,14 @@ import {Image} from 'react-native';
 import Discount from '../../component/Discount';
 import Onlyproduct from '../../component/Onlyproduct';
 import MostPopular from '../../component/MostPopular.';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
 
 const Sale = () => {
+  const bottomViewHeight = useBottomTabBarHeight();
   return (
-    <SafeAreaView style={styles.container}>
-    {/* <StatusBar hidden/> */}
-      <ScrollView style={{height:windowHeight, width:windowWidth , flex:1}}>
+    <View style={styles.container}>
+      <StatusBar />
+      <SafeAreaView style={{flex: 1}}>
         <Bubbles style={{position: 'absolute', top: 0, right: 0}} />
         <View
           style={[
@@ -35,38 +44,45 @@ const Sale = () => {
             <Timer />
           </View>
         </View>
-        <View>
+        <ScrollView style={{height: windowHeight, width: windowWidth, flex: 1}}>
           <Selector />
-          <Image
-            source={require('../../assets/image/BANNER1.png')}
-            resizeMode="cover"
+          <View>
+            <Image
+              source={require('../../assets/image/BANNER1.png')}
+              resizeMode="cover"
+              style={{
+                width: windowWidth - 40,
+                height: 180,
+                alignSelf: 'center',
+                borderColor: '#E9E5E5',
+                borderWidth: 1,
+                borderRadius: 13,
+              }}
+            />
+            <Discount />
+            <Image
+              source={require('../../assets/image/BANNER3.png')}
+              resizeMode="stretch"
+              style={{
+                width: windowWidth - 40,
+                // height:'auto',
+                alignSelf: 'center',
+                borderColor: '#E9E5E5',
+                borderWidth: 1,
+                borderRadius: 13,
+              }}
+            />
+            <Onlyproduct limit={2} />
+            <MostPopular />
+          </View>
+          <View
             style={{
-              width: windowWidth - 40,
-              height: 180,
-              alignSelf: 'center',
-              borderColor: '#E9E5E5',
-              borderWidth: 1,
-              borderRadius: 13,
+              height: bottomViewHeight,
             }}
           />
-          <Discount />
-          <Image
-            source={require('../../assets/image/BANNER3.png')}
-            resizeMode="stretch"
-            style={{
-              width: windowWidth - 40,
-              // height:'auto',
-              alignSelf: 'center',
-              borderColor: '#E9E5E5',
-              borderWidth: 1,
-              borderRadius: 13,
-            }}
-          />
-          <Onlyproduct limit={2}/>
-          <MostPopular/>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </View>
   );
 };
 
@@ -75,7 +91,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: windowHeight,
     width: windowWidth,
-    // backgroundColor: '#fff',
+    backgroundColor: '#fff',
   },
 });
 

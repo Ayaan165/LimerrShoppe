@@ -36,7 +36,7 @@ const RecentlyVisited = () => {
       <View style={[commonStyle.flexDirectionRow, commonStyle.flex1,]}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingVertical:10, paddingLeft:10}}>
           {DATA.map((item, index) => (
-            <ClickablePhotoFrame url={item.image} size={60}  style={{marginLeft:10}}/>
+            <ClickablePhotoFrame url={item.image} size={60}  style={{marginLeft:10}} key={item.id}/>
           ))}
         </ScrollView>
       </View>

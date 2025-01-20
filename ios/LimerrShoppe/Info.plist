@@ -50,8 +50,6 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Raleway.ttf</string>
-		<string>numitoIt.ttf</string>
-		<string>nunito.ttf</string>
 		<string>Raleway500.ttf</string>
 		<string>RalewaySemiBold.ttf</string>
 		<string>Raleway100.ttf</string>
@@ -62,6 +60,15 @@
 		<string>Raleway700.ttf</string>
 		<string>Raleway800.ttf</string>
 		<string>Raleway900.ttf</string>
+		<string>Nunito.ttf</string>
+		<string>Nunito200.ttf</string>
+		<string>Nunito300.ttf</string>
+		<string>Nunito400.ttf</string>
+		<string>Nunito500.ttf</string>
+		<string>Nunito600.ttf</string>
+		<string>Nunito700.ttf</string>
+		<string>Nunito800.ttf</string>
+		<string>Nunito900.ttf</string>
 	</array>
 </dict>
 </plist>

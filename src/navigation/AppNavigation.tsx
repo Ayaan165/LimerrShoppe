@@ -5,6 +5,7 @@ import BottomStack from './BottomStack';
 import ChatScreen from '../screen/app/ChatScreen';
 import ProductPage from '../screen/app/ProductPage';
 import JustForYou from '../component/JustForYou';
+import ReviewScreen from '../screen/app/ReviewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const AppStack = () => {
                 <Stack.Screen name="ChatScreen" component={ChatScreen} />
                 <Stack.Screen name ="ProductPage" component={ProductPage}/>
                 <Stack.Screen name="JustForYou" component={JustForYou}/>
+                <Stack.Screen name="ReviewScreen" component={ReviewScreen} />
         </Stack.Navigator>
     );
 };
