@@ -29,6 +29,7 @@ interface TouchableButtonProps {
   title: string;
   style?: ViewStyle;
   TextStyle?: TextStyle;
+  disable?: boolean;
 }
 
 const TouchableButton: React.FC<TouchableButtonProps> = ({
@@ -36,9 +37,10 @@ const TouchableButton: React.FC<TouchableButtonProps> = ({
   title,
   style,
   TextStyle,
+  disable=false
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.button, style]} disabled={disable}>
       <Text style={[styles.text, TextStyle]}>{title}</Text>
     </TouchableOpacity>
   );

@@ -10,8 +10,11 @@ import {
 import PhotoFrame, {ClickablePhotoFrame} from './PhotoFrame';
 import commonStyle from '../style/commonStyle';
 import typography from '../style/typography';
+interface RecentlyVisitedProps {
+  size?: number;
+}
 
-const RecentlyVisited = () => {
+const RecentlyVisited: React.FC<RecentlyVisitedProps> = ({size = 60}) => {
   const DATA = [
     {id: 1, image: require('../assets/image/RV1.png')},
     {id: 2, image: require('../assets/image/RV2.png')},
@@ -25,18 +28,26 @@ const RecentlyVisited = () => {
       <View style={[commonStyle.ml20]}>
         <Text
           style={[
-            typography.textBold21,
-            typography.Raleway,
+            typography.font21,
+            typography.RaleWay700,
             // commonStyle.mt15,
             commonStyle.mb5,
           ]}>
           Recently viewed
         </Text>
       </View>
-      <View style={[commonStyle.flexDirectionRow, commonStyle.flex1,]}>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{paddingVertical:10, paddingLeft:10}}>
+      <View style={[commonStyle.flexDirectionRow]}>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{paddingVertical: 5, paddingLeft: 10}}>
           {DATA.map((item, index) => (
-            <ClickablePhotoFrame url={item.image} size={60}  style={{marginLeft:10}} key={item.id}/>
+            <ClickablePhotoFrame
+              url={item.image}
+              size={size}
+              style={{marginLeft: 10}}
+              key={item.id}
+            />
           ))}
         </ScrollView>
       </View>

@@ -5,6 +5,7 @@ import typography from '../style/typography';
 import commonStyle from '../style/commonStyle';
 import {Image} from 'react-native';
 import {COLORS} from '../consts/COLOR';
+import Like from '../logo/Like.svg';
 
 const MostPopular: React.FC = () => {
   const item = [
@@ -43,13 +44,13 @@ const MostPopular: React.FC = () => {
           commonStyle.ph20,
         ]}>
         <View>
-          <Text style={[typography.textBold21, typography.Raleway]}>
+          <Text style={[typography.RaleWay700,typography.font21]}>
             Most Popular
           </Text>
         </View>
         <View
           style={[commonStyle.flexDirectionRow, commonStyle.alignItemsCenter]}>
-          <Text style={[typography.textBold21, typography.Raleway]}>
+          <Text style={[typography.RaleWay700,typography.font21]}>
             See All
           </Text>
           <ArrowButton onPress={() => {}} />
@@ -89,8 +90,8 @@ const MostPopular: React.FC = () => {
                   />
                 </View>
                 <View style={[commonStyle.flexDirectionRow, commonStyle.p5 , commonStyle.justifyContentSpaceB , commonStyle.alignItemsCenter]}>
-                <Text style={[typography.Boldtext16, typography.Raleway]}>{item.like}💙</Text>
-                <Text style={[typography.w500s12, typography.Raleway]}>{item.badge}</Text>
+                <Text style={[typography.RaleWay700, typography.font15]}>{item.like}<Like/></Text>
+                <Text style={[typography.RaleWay500, typography.font13]}>{item.badge}</Text>
                   </View>
               </View>
             );

@@ -113,10 +113,28 @@ const typography = StyleSheet.create({
       android: {fontFamily: 'Raleway600'},
     }),
   },
+  RaleWay500: {
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '500'},
+      android: {fontFamily: 'Raleway500'},
+    }),
+  },
+  RaleWay800: {
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '800'},
+      android: {fontFamily: 'Raleway800'},
+    }),
+  },
   Nunito400: {
     ...Platform.select({
       ios: {fontFamily: 'Nunito', fontWeight: '400'},
       android: {fontFamily: 'Nunito400'},
+    }),
+  },
+  Nunito300: {
+    ...Platform.select({
+      ios: {fontFamily: 'Nunito', fontWeight: '300'},
+      android: {fontFamily: 'Nunito300'},
     }),
   },
   Nunito800: {
@@ -124,6 +142,39 @@ const typography = StyleSheet.create({
       ios: {fontFamily: 'Nunito', fontWeight: '800'},
       android: {fontFamily: 'Nunito800'},
     }),
+  },
+  font21: {
+    fontSize: 21,
+  },
+  font15: {
+    fontSize: 15,
+  },
+  font12: {
+    fontSize: 12,
+  },
+  font13: {
+    fontSize: 13,
+  },
+  font14: {
+    fontSize: 14,
+  },
+  font16: {
+    fontSize: 16,
+  },
+  font17: {
+    fontSize: 17,
+  },
+  font18: {
+    fontSize: 18,
+  },
+  font20: {
+    fontSize: 20,
+  },
+  font22: {
+    fontSize: 22,
+  },
+  font28: {
+    fontSize: 28,
   },
 });
 
