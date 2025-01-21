@@ -60,7 +60,17 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
   const bottomViewHeight = useBottomTabBarHeight();
 
   const [openTab, setOpenTab] = useState('Active Rewards');
-  const VoucherCard = ({voucher}) => {
+  interface Voucher {
+    id: number;
+    title: string;
+    description: string;
+    validUntil: string;
+    daysLeft?: number;
+    collected: boolean;
+    color: string;
+    Icon: string;
+  }
+  const VoucherCard: React.FC<{voucher: Voucher}> = ({voucher}) => {
     return (
       <View
         style={[
@@ -239,7 +249,8 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
       )}
       {openTab === 'Progress' && (
         <>
-          <View style={{flex:1,justifyContent: 'center', alignItems: 'center'}}>
+          <View
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text style={styles.headerTitle}>Progress</Text>
           </View>
           <BottomBarView />
