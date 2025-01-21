@@ -1,22 +1,34 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { COLORS } from '../consts/COLOR';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {COLORS} from '../consts/COLOR';
 
 interface CustomContainerProps {
   SvgComponent?: React.ComponentType;
   style?: object;
   badgeCount?: number;
   [key: string]: any;
+  onPress?: () => void;
 }
 
-const CustomContainer: React.FC<CustomContainerProps> = ({ SvgComponent, style, badgeCount, ...props }) => {
+const CustomContainer: React.FC<CustomContainerProps> = ({
+  SvgComponent,
+  style,
+  badgeCount,
+  onPress,
+  active,
+  ...props
+}) => {
   return (
-    <TouchableOpacity style={[styles.container, style]} {...props}>
+    <TouchableOpacity
+      style={[
+        styles.container,
+        style,
+        {backgroundColor: active ? COLORS.primaryButton : '#f0f0f0'},
+      ]}
+      {...props}
+      onPress={onPress}>
       {SvgComponent && <SvgComponent />}
-      {badgeCount ? (
-        <View style={styles.badgeContainer}>     
-        </View>
-      ) : null}
+      {badgeCount ? <View style={styles.badgeContainer}></View> : null}
     </TouchableOpacity>
   );
 };
@@ -38,9 +50,9 @@ const styles = StyleSheet.create({
     height: 15,
     width: 15,
     borderRadius: 10,
-    borderWidth:3,
-    borderColor:'white',
-    backgroundColor:COLORS.primaryButton,
+    borderWidth: 3,
+    borderColor: 'white',
+    backgroundColor: COLORS.primaryButton,
     justifyContent: 'center',
     alignItems: 'center',
   },

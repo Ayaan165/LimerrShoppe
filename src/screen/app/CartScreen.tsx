@@ -22,8 +22,12 @@ import REMOVEWISHLIST from '../../logo/REMOVEWISHLIST.svg';
 import Less from '../../logo/Less.svg';
 import More from '../../logo/More.svg';
 import {COLORS} from '../../consts/COLOR';
+import {NavigationProp} from '@react-navigation/native';
+interface CartScreenProps {
+    navigation: NavigationProp<any>;
+}
 
-const CartScreen: React.FC = () => {
+const CartScreen: React.FC<CartScreenProps> = ({navigation}) => {
   const increaseRef = useRef(null);
   const decreaseRef = useRef(null);
   const [Quantity, setQuantity] = useState(1);
@@ -84,7 +88,7 @@ const CartScreen: React.FC = () => {
                 <Text style={styles.counterText}>{cartItem.length}</Text>
               </View>
             </View>
-            <AddressCard />
+            <AddressCard onPress={()=>{}}/>
           </View>
           {cartItem.length === 0 && (
             <View
@@ -312,7 +316,7 @@ const CartScreen: React.FC = () => {
                 ...typography.font16,
                 color: cartItem.length === 0 ? 'black' : 'white',
               }}
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('PaymentScreen', {cartItem, totalPrice})}}
             />
           </View>
         </View>

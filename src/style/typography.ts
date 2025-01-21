@@ -137,6 +137,12 @@ const typography = StyleSheet.create({
       android: {fontFamily: 'Nunito300'},
     }),
   },
+  Nunito600: {
+    ...Platform.select({
+      ios: {fontFamily: 'Nunito', fontWeight: '600'},
+      android: {fontFamily: 'Nunito600'},
+    }),
+  },
   Nunito800: {
     ...Platform.select({
       ios: {fontFamily: 'Nunito', fontWeight: '800'},

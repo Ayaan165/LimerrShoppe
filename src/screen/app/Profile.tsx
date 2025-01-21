@@ -61,10 +61,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
               commonStyle.alignItemsCenter,
               {gap: 13},
             ]}>
-            <PhotoFrame
-              size={43}
-              url={require('../../assets/image/profilePhoto.png')}
-            />
+            <PhotoFrame size={43} url={require('../../assets/image/RV1.png')} />
             <View
               style={{
                 alignItems: 'center',
@@ -88,7 +85,12 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             </View>
           </View>
           <View style={[commonStyle.flexDirectionRow, {gap: 10}]}>
-            <CustomContainer SvgComponent={Scanner} />
+            <CustomContainer
+              SvgComponent={Scanner}
+              onPress={() => {
+                navigation.navigate('VoucherScreen');
+              }}
+            />
             <CustomContainer SvgComponent={Menu} badgeCount={1} />
             <CustomContainer SvgComponent={Setting} />
           </View>
