@@ -17,6 +17,12 @@ import Menu from '../../logo/Menu.svg';
 import Setting from '../../logo/Setting.svg';
 import typography from '../../style/typography';
 import Gift from '../../logo/Gift.svg';
+import FromApp from '../../logo/FromApp.svg';
+import Heart2 from '../../logo/Heart2.svg';
+import Cloud from '../../logo/Cloud.svg';
+import Cloth from '../../logo/Cloth.svg';
+import Smile from '../../logo/Smile.svg';
+import Star3 from '../../logo/ProgressStar.svg';
 
 const vouchers = [
   {
@@ -46,6 +52,57 @@ const vouchers = [
     collected: true,
     color: 'blue',
     Icon: 'heart',
+  },
+];
+
+const ProgressStats = [
+  {
+    id: 1,
+    title: 'First Purchase',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <FromApp />,
+    complete: '78%',
+  },
+  {
+    id: 2,
+    title: 'Loyal Customer',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <Heart2 />,
+    complete: '100%',
+  },
+  {
+    id: 3,
+    title: 'Review Maker',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <Star3 />,
+    complete: '30%',
+  },
+  {
+    id: 4,
+    title: 'Big Soul',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <Cloud />,
+    complete: '0%',
+  },
+  {
+    id: 4,
+    title: 'T-Shirt Collector',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <Cloth />,
+    complete: '0%',
+  },
+  {
+    id: 6,
+    title: '10+ Orders',
+    description:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
+    Icon: <Smile />,
+    complete: '30%',
   },
 ];
 
@@ -149,7 +206,6 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
             style={{
               height: 4,
               width: '100%',
-              // marginBottom:,
               position: 'absolute',
               backgroundColor: 'white',
             }}></View>
@@ -166,7 +222,7 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
           <View
             style={{
               justifyContent: 'flex-end',
-              width: '30%',
+              //   width: '30%',
               alignItems: 'center',
             }}>
             <TouchableOpacity style={styles.collectedButton}>
@@ -249,14 +305,101 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
       )}
       {openTab === 'Progress' && (
         <>
-          <View
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={styles.headerTitle}>Progress</Text>
-          </View>
+          <ProgressTab />
           <BottomBarView />
         </>
       )}
     </SafeAreaView>
+  );
+};
+
+const ProgressTab = () => {
+  return (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingTop: 10,
+      }}>
+      {ProgressStats.map(progress => (
+        <ProgressCard progress={progress} key={progress.id} />
+      ))}
+    </View>
+  );
+};
+
+interface Progress {
+  id: number;
+  title: string;
+  description: string;
+  Icon: any;
+  complete: string;
+}
+
+const ProgressCard: React.FC<{progress: Progress}> = ({progress}) => {
+  return (
+    <View style={{width: '47%', alignItems: 'center'}}>
+      <View>
+        <View
+          style={{
+            height: 70,
+            width: 70,
+            backgroundColor: 'white',
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 35,
+          }}>
+          <View
+            style={{
+              height: 60,
+              width: 60,
+              backgroundColor: 'white',
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 30,
+              borderColor: COLORS.primaryButton,
+              borderWidth: 1,
+            }}>
+              {progress.Icon}
+          </View>
+        </View>
+      </View>
+      <View
+        style={{width: '100%', marginVertical: 10, paddingVertical: 5, gap: 5}}>
+        <Text
+          style={{textAlign: 'center', fontSize: 15, ...typography.RaleWay700}}>
+          {progress.title}
+        </Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            fontSize: 11,
+            ...typography.Nunito400,
+            lineHeight: 18,
+          }}>
+          {progress.description}
+        </Text>
+      </View>
+    </View>
   );
 };
 
@@ -327,7 +470,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    paddingVertical: 15,
+    paddingVertical: 5,
   },
   voucherHeader: {
     fontSize: 19,
@@ -355,14 +498,17 @@ const styles = StyleSheet.create({
   voucherBody: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingVertical: 20,
+    paddingHorizontal: 8,
+    paddingLeft: 16,
+    paddingTop: 15,
+    // backgroundColor:'red',
+    paddingVertical: 10,
   },
   voucherTitle: {
     fontSize: 17,
     fontWeight: '700',
     marginBottom: 5,
-    width: '90%',
+    // width: '90%',
     ...typography.RaleWay700,
   },
   voucherDescription: {
