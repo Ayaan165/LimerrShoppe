@@ -12,6 +12,7 @@ import SizeSetting from '../screen/app/Setting/SizeSetting';
 import TermsCondition from '../screen/app/Setting/TermsCondition';
 import LanguageSetting from '../screen/app/Setting/LanguageSetting';
 import AboutApp from '../screen/app/Setting/AboutApp';
+import CountrySelection from '../screen/app/Setting/CountrySelection';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ const SettingsStack = () => {
             <Stack.Screen name='TermsConditionScreen' component={TermsCondition} />
             <Stack.Screen name='LanguageSettingScreen' component={LanguageSetting} />
             <Stack.Screen name='AbourAppScreen' component={AboutApp} />
+            <Stack.Screen name='CountrySelection' component={CountrySelection} />
         </Stack.Navigator>
     );
 };
