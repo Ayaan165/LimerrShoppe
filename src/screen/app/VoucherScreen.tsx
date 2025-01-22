@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import * as PROGRESS from 'react-native-progress';
 import PhotoFrame from '../../component/PhotoFrame';
 import CustomContainer from '../../component/CustomeContainer';
 import {COLORS} from '../../consts/COLOR';
@@ -22,6 +23,7 @@ import Heart2 from '../../logo/Heart2.svg';
 import Cloud from '../../logo/Cloud.svg';
 import Cloth from '../../logo/Cloth.svg';
 import Smile from '../../logo/Smile.svg';
+import Check from '../../logo/Check.svg';
 import Star3 from '../../logo/ProgressStar.svg';
 
 const vouchers = [
@@ -62,7 +64,7 @@ const ProgressStats = [
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
     Icon: <FromApp />,
-    complete: '78%',
+    complete: '100%',
   },
   {
     id: 2,
@@ -70,7 +72,7 @@ const ProgressStats = [
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
     Icon: <Heart2 />,
-    complete: '100%',
+    complete: '75%',
   },
   {
     id: 3,
@@ -78,7 +80,7 @@ const ProgressStats = [
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
     Icon: <Star3 />,
-    complete: '30%',
+    complete: '50%',
   },
   {
     id: 4,
@@ -89,7 +91,7 @@ const ProgressStats = [
     complete: '0%',
   },
   {
-    id: 4,
+    id: 5,
     title: 'T-Shirt Collector',
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
@@ -102,7 +104,7 @@ const ProgressStats = [
     description:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore',
     Icon: <Smile />,
-    complete: '30%',
+    complete: '25%',
   },
 ];
 
@@ -304,10 +306,10 @@ const VoucherScreen: React.FC<VoucherScreenProps> = ({navigation}) => {
         </ScrollView>
       )}
       {openTab === 'Progress' && (
-        <>
+        <ScrollView>
           <ProgressTab />
           <BottomBarView />
-        </>
+        </ScrollView>
       )}
     </SafeAreaView>
   );
@@ -325,7 +327,7 @@ const ProgressTab = () => {
         paddingTop: 10,
       }}>
       {ProgressStats.map(progress => (
-        <ProgressCard progress={progress} key={progress.id} />
+        <ProgressCard progress={progress}  key={progress.id}/>
       ))}
     </View>
   );
@@ -345,8 +347,8 @@ const ProgressCard: React.FC<{progress: Progress}> = ({progress}) => {
       <View>
         <View
           style={{
-            height: 70,
-            width: 70,
+            height: 72,
+            width: 72,
             backgroundColor: 'white',
             shadowColor: '#000',
             shadowOffset: {
@@ -360,26 +362,31 @@ const ProgressCard: React.FC<{progress: Progress}> = ({progress}) => {
             alignItems: 'center',
             borderRadius: 35,
           }}>
+          <View style={{position: 'absolute',}}>
+            <PROGRESS.Pie
+              progress={parseInt(progress.complete) === 100 ? 0.0 : parseInt(progress.complete) / 100}
+              size={76}
+              color={COLORS.primaryButton}
+              borderColor="rgba(255,255,255,0)"
+            />
+          </View>
+          {progress.complete === '100%' && (
+            <Check
+              style={{position: 'absolute', zIndex: 1, top: 1, right: 1}}
+            />
+          )}
           <View
             style={{
               height: 60,
               width: 60,
               backgroundColor: 'white',
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: 30,
               borderColor: COLORS.primaryButton,
               borderWidth: 1,
             }}>
-              {progress.Icon}
+            {progress.Icon}
           </View>
         </View>
       </View>

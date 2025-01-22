@@ -32,6 +32,7 @@ import TopProducts from '../../component/TopProducts';
 import JustForYou from '../../component/JustForYou';
 import {NavigationProp} from '@react-navigation/native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {AnnouncementBanner,VoucherExpireyBanner,RewardBanner} from '../../component/ProfileBanner';
 
 interface ProfileScreenProps {
   navigation: NavigationProp<any>;
@@ -92,7 +93,12 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
               }}
             />
             <CustomContainer SvgComponent={Menu} badgeCount={1} />
-            <CustomContainer SvgComponent={Setting} />
+            <CustomContainer
+              SvgComponent={Setting}
+              onPress={() => {
+                navigation.navigate('SettingsStack');
+              }}
+            />
           </View>
         </View>
         <View style={[commonStyle.ph20, commonStyle.pv15]}>
@@ -102,39 +108,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             </Text>
           </View>
           <View>
-            <View
-              style={{
-                padding: 10,
-                backgroundColor: COLORS.inputBackground,
-                borderRadius: 10,
-                marginTop: 10,
-              }}>
-              <View>
-                <Text style={[typography.Boldtext16, typography.Raleway]}>
-                  Announcement
-                </Text>
-              </View>
-              <View
-                style={[
-                  commonStyle.flexDirectionRow,
-                  commonStyle.justifyContentCenter,
-                ]}>
-                <View style={{width: '80%'}}>
-                  <Text
-                    style={[
-                      typography.w500s12,
-                      typography.Nunito,
-                      {lineHeight: 20, width: '100%'},
-                    ]}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Maecenas hendrerit luctus libero ac vulputate.
-                  </Text>
-                </View>
-                <View style={[commonStyle.alignItemsEnd, {width: '20%'}]}>
-                  <ArrowButton onPress={() => {}} />
-                </View>
-              </View>
-            </View>
+              <AnnouncementBanner/>
+              {/* <VoucherExpireyBanner/> */}
+              {/* <RewardBanner/> */}
           </View>
         </View>
         <RecentlyVisited />

@@ -113,6 +113,12 @@ const typography = StyleSheet.create({
       android: {fontFamily: 'Raleway600'},
     }),
   },
+  RaleWay400: {
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '400'},
+      android: {fontFamily: 'Raleway400'},
+    }),
+  },
   RaleWay500: {
     ...Platform.select({
       ios: {fontFamily: 'Raleway', fontWeight: '500'},
