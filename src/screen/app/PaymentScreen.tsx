@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,15 +10,15 @@ import {
   Modal,
   Button,
 } from 'react-native';
-import { NavigationProp } from '@react-navigation/native';
+import {NavigationProp} from '@react-navigation/native';
 import typography from '../../style/typography';
 import AddressCard, {
   AddressdEditModal,
   ContectCard,
 } from '../../component/AddressCard';
 import BottomBarView from '../../component/BottomBarView';
-import { TouchableButton } from '../../component/Button';
-import { COLORS } from '../../consts/COLOR';
+import {TouchableButton} from '../../component/Button';
+import {COLORS} from '../../consts/COLOR';
 import PhotoFrame from '../../component/PhotoFrame';
 import EditIcon from '../../logo/EditIcon.svg';
 import TintedButton from '../../component/TintedButton';
@@ -28,9 +28,9 @@ import {
   PaymentProgress,
   PaymentSucess,
 } from '../../component/Models';
-import { AddCardModal } from './Setting/PaymentSetting';
-import { BlurView } from '@react-native-community/blur';
-import { windowHeight } from '../../style/commonStyle';
+import {AddCardModal} from './Setting/PaymentSetting';
+import {BlurView} from '@react-native-community/blur';
+import {windowHeight} from '../../style/commonStyle';
 
 interface PaymentScreenProps {
   navigation: NavigationProp<any>;
@@ -38,11 +38,11 @@ interface PaymentScreenProps {
 }
 
 const shippingOptions = [
-  { id: 1, title: 'Standard Shipping', price: 0, time: '5-7 days' },
-  { id: 2, title: 'Express Shipping', price: 12, time: '1-2 days' },
+  {id: 1, title: 'Standard Shipping', price: 0, time: '5-7 days'},
+  {id: 2, title: 'Express Shipping', price: 12, time: '1-2 days'},
 ];
 
-const PaymentScreen: React.FC<PaymentScreenProps> = ({ navigation, route }) => {
+const PaymentScreen: React.FC<PaymentScreenProps> = ({navigation, route}) => {
   const [cardInfo] = useState([
     {
       id: '1',
@@ -52,9 +52,10 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ navigation, route }) => {
       expiry: '12/22',
     },
   ]);
-  const { cartItem, totalPrice } = route.params;
+  const {cartItem, totalPrice} = route.params;
   const [selectedShipping, setSelectedShipping] = useState<number>(1);
-  const [isVisiblePaymentProgress, setIsVisiblePaymentProgress] = useState(false);
+  const [isVisiblePaymentProgress, setIsVisiblePaymentProgress] =
+    useState(false);
   const [isVisiblePaymentSuccess, setIsVisiblePaymentSuccess] = useState(false);
   const [isVisiblePaymentFailed, setIsVisiblePaymentFailed] = useState(false);
   const [isOpenEditAddress, setIsOpenEditAddress] = useState(false);
@@ -76,9 +77,7 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ navigation, route }) => {
         />
       </Modal>
       <Modal visible={isOpenEditAddress} transparent={true}>
-        <AddressdEditModal
-          onSaveChanges={() => setIsOpenEditAddress(false)}
-        />
+        <AddressdEditModal onSaveChanges={() => setIsOpenEditAddress(false)} />
       </Modal>
 
       <ScrollView>
@@ -102,61 +101,70 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
 
-          <View style={{ marginHorizontal: 20, gap: 10 }}>
-            {cartItem.map((item, index) => (
-              <View key={item.id}>
-                <View style={styles.itemContainer}>
-                  <View style={styles.itemDetailsContainer}>
-                    <View style={{ width: 58 }}>
-                      <PhotoFrame size={50} url={item.image} />
-                      <View style={styles.quantityBadge}>
-                        <Text style={{ fontSize: 13, ...typography.RaleWay700 }}>
-                          {item.quantity}
+          <View style={{marginHorizontal: 20, gap: 10}}>
+            {cartItem.map(
+              (item: {
+                id: string;
+                image: string;
+                quantity: number;
+                details: string;
+                discountedPrice: number;
+                price: number;
+              }) => (
+                <View key={item.id}>
+                  <View style={styles.itemContainer}>
+                    <View style={styles.itemDetailsContainer}>
+                      <View style={{width: 58}}>
+                        <PhotoFrame size={50} url={item.image} />
+                        <View style={styles.quantityBadge}>
+                          <Text
+                            style={{fontSize: 13, ...typography.RaleWay700}}>
+                            {item.quantity}
+                          </Text>
+                        </View>
+                      </View>
+                      <View style={styles.itemDescriptionContainer}>
+                        <Text style={{fontSize: 14, ...typography.Nunito400}}>
+                          {item.details}
                         </Text>
                       </View>
                     </View>
-                    <View style={styles.itemDescriptionContainer}>
-                      <Text style={{ fontSize: 14, ...typography.Nunito400 }}>
-                        {item.details}
-                      </Text>
-                    </View>
+                    <Text style={styles.itemPrice}>
+                      $
+                      {(
+                        item.discountedPrice * item.quantity ||
+                        item.price * item.quantity
+                      ).toFixed(2)}
+                    </Text>
                   </View>
-                  <Text style={styles.itemPrice}>
-                    $
-                    {(
-                      item.discountedPrice * item.quantity ||
-                      item.price * item.quantity
-                    ).toFixed(2)}
-                  </Text>
                 </View>
-              </View>
-            ))}
+              ),
+            )}
           </View>
         </View>
 
         {/* Shipping Options */}
         <View>
-          <View style={{ marginHorizontal: 20, marginVertical: 15 }}>
-            <Text style={{ fontSize: 21, ...typography.RaleWay700 }}>
+          <View style={{marginHorizontal: 20, marginVertical: 15}}>
+            <Text style={{fontSize: 21, ...typography.RaleWay700}}>
               Shipping Options
             </Text>
           </View>
-          {shippingOptions.map((item) => (
+          {shippingOptions.map(item => (
             <TouchableOpacity
               key={item.id}
               onPress={() => setSelectedShipping(item.id)}
-              style={styles.shippingOption}
-            >
+              style={styles.shippingOption}>
               <View style={styles.shippingOptionDetails}>
                 <View style={styles.shippingOptionCheck}>
                   {selectedShipping === item.id && <Check />}
                 </View>
-                <Text style={{ fontSize: 16, ...typography.RaleWay600 }}>
+                <Text style={{fontSize: 16, ...typography.RaleWay600}}>
                   {item.title}
                 </Text>
                 <Text style={styles.shippingOptionTime}>{item.time}</Text>
               </View>
-              <Text style={{ fontSize: 16, ...typography.RaleWay700 }}>
+              <Text style={{fontSize: 16, ...typography.RaleWay700}}>
                 {item.price === 0 ? 'Free' : `$${item.price.toFixed(2)}`}
               </Text>
             </TouchableOpacity>
@@ -166,14 +174,15 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ navigation, route }) => {
         {/* Payment Method */}
         <View>
           <View style={styles.paymentMethodHeader}>
-            <Text style={{ fontSize: 21, ...typography.RaleWay700 }}>
+            <Text style={{fontSize: 21, ...typography.RaleWay700}}>
               Payment Method
             </Text>
-            <TouchableOpacity onPress={() => navigation.navigate('CardSelectModal')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('CardSelectModal')}>
               <EditIcon />
             </TouchableOpacity>
           </View>
-          <View style={{ alignSelf: 'flex-start', paddingHorizontal: 20 }}>
+          <View style={{alignSelf: 'flex-start', paddingHorizontal: 20}}>
             <TintedButton
               title="Card"
               onPress={() => {}}
@@ -322,7 +331,7 @@ const styles = StyleSheet.create({
     width: 24,
     backgroundColor: '#E5EBFC',
     borderRadius: 12,
-    borderColor: COLORS.white ,
+    borderColor: COLORS.white,
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
@@ -368,7 +377,7 @@ const styles = StyleSheet.create({
     ...typography.font18,
     ...typography.RaleWay700,
   },
-  payButton:{
+  payButton: {
     width: 140,
     height: 40,
     borderRadius: 11,
@@ -378,9 +387,8 @@ const styles = StyleSheet.create({
   payButtonText: {
     ...typography.Nunito300,
     ...typography.font16,
-    color: 'white' ,
+    color: 'white',
   },
 });
 
 export default PaymentScreen;
-
