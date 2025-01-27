@@ -20,76 +20,79 @@ import Empty from '../../logo/Empty.svg';
 import REMOVEWISHLIST from '../../logo/REMOVEWISHLIST.svg';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import BottomBarView from '../../component/BottomBarView';
-
-
+import {NavigationProp} from '@react-navigation/native';
 const WishlistProductes: any[] = [
-  {
-    id: 1,
-    name: 'Product 1',
-    price: 17,
-    image: require('../../assets/image/FS5.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'S',
-    color: 'Pink',
-  },
-  {
-    id: 2,
-    name: 'Product 1',
-    price: 30,
-    discountedPrice: 15,
-    image: require('../../assets/image/FS3.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Whiet',
-  },
-  {
-    id: 3,
-    name: 'Product 1',
-    price: 25,
-    image: require('../../assets/image/FS2.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Pink',
-  },
-  {
-    id: 4,
-    name: 'Product 1',
-    price: 23,
-    image: require('../../assets/image/FS1.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Blackk',
-  },
-  {
-    id: 5,
-    name: 'Product 1',
-    price: 17,
-    image: require('../../assets/image/FS5.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Blackk',
-  },
-  {
-    id: 6,
-    name: 'Product 1',
-    price: 34,
-    image: require('../../assets/image/FS3.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Blackk',
-  },
-  {
-    id: 7,
-    name: 'Product 1',
-    price: 56,
-    image: require('../../assets/image/FS2.png'),
-    details: 'Lorem ipsum dolor sit amet consectetur.',
-    size: 'M',
-    color: 'Blackk',
-  },
+  // {
+  //   id: 1,
+  //   name: 'Product 1',
+  //   price: 17,
+  //   image: require('../../assets/image/FS5.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'S',
+  //   color: 'Pink',
+  // },
+  // {
+  //   id: 2,
+  //   name: 'Product 1',
+  //   price: 30,
+  //   discountedPrice: 15,
+  //   image: require('../../assets/image/FS3.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Whiet',
+  // },
+  // {
+  //   id: 3,
+  //   name: 'Product 1',
+  //   price: 25,
+  //   image: require('../../assets/image/FS2.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Pink',
+  // },
+  // {
+  //   id: 4,
+  //   name: 'Product 1',
+  //   price: 23,
+  //   image: require('../../assets/image/FS1.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Blackk',
+  // },
+  // {
+  //   id: 5,
+  //   name: 'Product 1',
+  //   price: 17,
+  //   image: require('../../assets/image/FS5.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Blackk',
+  // },
+  // {
+  //   id: 6,
+  //   name: 'Product 1',
+  //   price: 34,
+  //   image: require('../../assets/image/FS3.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Blackk',
+  // },
+  // {
+  //   id: 7,
+  //   name: 'Product 1',
+  //   price: 56,
+  //   image: require('../../assets/image/FS2.png'),
+  //   details: 'Lorem ipsum dolor sit amet consectetur.',
+  //   size: 'M',
+  //   color: 'Blackk',
+  // },
 ];
 
-const Wishlist: React.FC = () => {
+interface WishlistProps {
+  navigation: NavigationProp<any>;
+}
+
+const Wishlist: React.FC<WishlistProps> = ({navigation}) => {
   const bottomViewHeight = useBottomTabBarHeight();
 
   return (
@@ -102,7 +105,12 @@ const Wishlist: React.FC = () => {
             <Text style={styles.title}>Wishlist</Text>
           </View>
           <View style={{flex: 1, justifyContent: 'space-between'}}>
-            <RecentlyVisited size={50} />
+            <RecentlyVisited
+              size={50}
+              onPress={() => {
+                navigation.navigate('RecentlyViewedScreen');
+              }}
+            />
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <View
@@ -134,7 +142,12 @@ const Wishlist: React.FC = () => {
           <View>
             <Text style={styles.title}>Wishlist</Text>
           </View>
-          <RecentlyVisited size={50} />
+          <RecentlyVisited
+            size={50}
+            onPress={() => {
+              navigation.navigate('RecentlyViewedScreen');
+            }}
+          />
           <View style={{gap: 5}}>
             {WishlistProductes.map((item, index) => (
               <View

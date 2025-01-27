@@ -5,6 +5,7 @@ interface PhotoFrameProps {
   size: number;
   url: any;
   style?: ViewStyle;
+  onPress?: () => void;
 }
 
 const PhotoFrame: React.FC<PhotoFrameProps> = ({ size, url, style }) => {
@@ -37,9 +38,10 @@ const PhotoFrame: React.FC<PhotoFrameProps> = ({ size, url, style }) => {
   );
 };
 
-const ClickablePhotoFrame: React.FC<PhotoFrameProps> = ({ size, url, style }) => {
+const ClickablePhotoFrame: React.FC<PhotoFrameProps> = ({ size, url, style , onPress}) => {
   return (
     <TouchableOpacity
+    onPress={onPress}
       style={[
         {
           height: size + 8,
