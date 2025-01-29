@@ -100,7 +100,15 @@ const typography = StyleSheet.create({
   },
 
   // NEW TYPOGRAPHY
-
+  PageTitle: {
+    paddingHorizontal:20,
+    lineHeight: 36,
+    fontSize: 28,
+    ...Platform.select({
+      ios: {fontFamily: 'Raleway', fontWeight: '700'},
+      android: {fontFamily: 'Raleway700'},
+    }),
+  },
   RaleWay700: {
     ...Platform.select({
       ios: {fontFamily: 'Raleway', fontWeight: '700'},

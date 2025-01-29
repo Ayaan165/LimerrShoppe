@@ -32,7 +32,11 @@ import TopProducts from '../../component/TopProducts';
 import JustForYou from '../../component/JustForYou';
 import {NavigationProp} from '@react-navigation/native';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
-import {AnnouncementBanner,VoucherExpireyBanner,RewardBanner} from '../../component/ProfileBanner';
+import {
+  AnnouncementBanner,
+  VoucherExpireyBanner,
+  RewardBanner,
+} from '../../component/ProfileBanner';
 
 interface ProfileScreenProps {
   navigation: NavigationProp<any>;
@@ -108,9 +112,9 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             </Text>
           </View>
           <View>
-              <AnnouncementBanner/>
-              {/* <VoucherExpireyBanner/> */}
-              {/* <RewardBanner/> */}
+            <AnnouncementBanner />
+            {/* <VoucherExpireyBanner/> */}
+            {/* <RewardBanner/> */}
           </View>
         </View>
         <RecentlyVisited />
@@ -125,19 +129,23 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({navigation}) => {
             <TintedButton
               title="To Pay"
               onPress={() => {
-                navigation.navigate('ShopStack');
+                navigation.navigate('HomeScreen');
               }}
+              badgeColor={'#F63C3C'}
+              badge
             />
             <TintedButton
               title="To Recieve"
               onPress={() => {
-                navigation.navigate('LiveScreen');
+                navigation.navigate('ToReceiveScreen');
               }}
+              badgeColor={'#08C514'}
+              badge
             />
             <TintedButton
               title="To Review"
               onPress={() => {
-                navigation.navigate('StoryScreen');
+                navigation.navigate('HistoryScreen');
               }}
             />
           </View>

@@ -5,7 +5,7 @@ import PaymentScreen from '../screen/app/PaymentScreen';
 import Settings from '../screen/app/Settings';
 import ProfileSetting from '../screen/app/Setting/ProfileSetting';
 import AddressSetting from '../screen/app/Setting/AddressSetting';
-import PaymentSetting from '../screen/app/Setting/PaymentSetting';
+import PaymentSetting, { AddCardModal, EditCardModal } from '../screen/app/Setting/PaymentSetting';
 import CountrySetting from '../screen/app/Setting/CountrySetting';
 import CurrencySetting from '../screen/app/Setting/CurrencySetting';
 import SizeSetting from '../screen/app/Setting/SizeSetting';
@@ -31,6 +31,18 @@ const SettingsStack = () => {
             <Stack.Screen name='LanguageSettingScreen' component={LanguageSetting} />
             <Stack.Screen name='AbourAppScreen' component={AboutApp} />
             <Stack.Screen name='CountrySelection' component={CountrySelection} />
+            <Stack.Screen name="EditCardModal" component={EditCardModal} options={{
+                presentation: 'containedTransparentModal',
+                contentStyle:{
+                    zIndex:1
+                }
+            }}/>
+            <Stack.Screen name="AddCardModal" component={AddCardModal} options={{
+                presentation: 'containedTransparentModal',
+                contentStyle:{
+                    // zIndex:1
+                }
+            }}/>
         </Stack.Navigator>
     );
 };

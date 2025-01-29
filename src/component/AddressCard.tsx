@@ -14,6 +14,7 @@ import {BlurView} from '@react-native-community/blur';
 import {windowWidth} from '../style/commonStyle';
 import {TouchableButton} from './Button';
 import ArrowGrey from '../logo/ArrowGrey.svg';
+import {SettingInput} from './Input';
 
 interface AddressCardProps {
   onPress: () => void;
@@ -83,34 +84,39 @@ const AddressdEditModal: React.FC<AddressdEditModalProps> = ({
         <View style={{padding: 20}}>
           <View>
             <Text style={Model.label}>Country</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <Text style={Model.label2}>India</Text>
-              <ArrowGrey/>
+              <ArrowGrey />
             </View>
           </View>
           <View>
-            <Text style={Model.label}>Address</Text>
-            <TextInput 
-            keyboardType='default'
-            autoComplete='street-address'
-            style={Model.input}/>
+            <SettingInput
+              label={'Address'}
+              placeholder={'Enter Address'}
+              style={Model.input}
+              type={'default'}
+            />
           </View>
           <View>
-            <Text style={Model.label}>Town / City</Text>
-            <TextInput 
-            keyboardType='default'
-            autoComplete='address-line2'
-            style={Model.input}/>
+            <SettingInput
+              label={'City'}
+              placeholder={'Enter City'}
+              style={Model.input}
+              type={'default'}
+            />
           </View>
           <View>
-            <Text style={Model.label}>Postcode</Text>
-            <TextInput 
-            autoComplete='postal-code'
-            keyboardType='decimal-pad'
-            style={Model.input}/>
+            <SettingInput
+              label={'Postcode'}
+              placeholder={'Enter Postcode'}
+              keyboardType={'number-pad'}
+              style={Model.input}
+              type={'default'}
+            />
           </View>
           <TouchableButton
-            style={{height: 40, borderRadius: 10, marginTop: 10}}
+            style={{height: 40, borderRadius: 10, marginTop: 10, width: '100%'}}
             TextStyle={{
               fontSize: 16,
               ...typography.Nunito300,
@@ -140,7 +146,7 @@ const Model = StyleSheet.create({
   label2: {
     fontSize: 20,
     ...typography.RaleWay700,
-    color:'#E7E8EB'
+    color: '#E7E8EB',
   },
   input: {
     backgroundColor: '#F1F4FE',

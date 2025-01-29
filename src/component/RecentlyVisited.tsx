@@ -6,15 +6,17 @@ import {
   FlatList,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import PhotoFrame, {ClickablePhotoFrame} from './PhotoFrame';
 import commonStyle from '../style/commonStyle';
 import typography from '../style/typography';
 interface RecentlyVisitedProps {
   size?: number;
+  onPress?: () => void;
 }
 
-const RecentlyVisited: React.FC<RecentlyVisitedProps> = ({size = 60}) => {
+const RecentlyVisited: React.FC<RecentlyVisitedProps> = ({size = 60 , onPress}) => {
   const DATA = [
     {id: 1, image: require('../assets/image/RV1.png')},
     {id: 2, image: require('../assets/image/RV2.png')},
@@ -47,6 +49,7 @@ const RecentlyVisited: React.FC<RecentlyVisitedProps> = ({size = 60}) => {
               size={size}
               style={{marginLeft: 10}}
               key={item.id}
+              onPress={onPress}
             />
           ))}
         </ScrollView>
